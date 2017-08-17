@@ -1,0 +1,5 @@
+<md-toolbar>
+
+    <button md-raised-button *ngIf="currentRoute" [routerLink]="'/'+currentRoute.path" style="margin-right:10px;"> {{currentRoute?.data.label}}</button> /
+    <button md-raised-button *ngIf="currentSecondRoute" style="margin-left:10px;" [routerLink]="[currentSecondRoute.path==''?'/'+currentRoute.path:currentSecondRoute.path]"> {{currentSecondRoute.data.label}}</button>
+</md-toolbar>

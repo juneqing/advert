@@ -7,6 +7,10 @@ import { ConfigService } from '../../services/config.service';
 })
 
 export class LoginPageComponent implements OnInit {
+  checked = false;
+  indeterminate = false;
+  align = 'start';
+  disabled = false;
   state = 'login';
   user = {
     phone: '',

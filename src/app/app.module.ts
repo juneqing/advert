@@ -14,6 +14,8 @@ import { AdvertSidebarComponent } from './com/advert-sidebar/advert-sidebar.comp
 import { ConfigService } from './services/config.service';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HashComponent } from './com/hash/hash.component';
+import { AdvertPublishTaskPageComponent } from './pages/advert/advert-publish-task-page/advert-publish-task-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HttpModule } from '@angular/http';
     AdvertPageComponent,
     AdvertHomePageComponent,
     AdvertHeaderComponent,
-    AdvertSidebarComponent
+    AdvertSidebarComponent,
+    HashComponent,
+    AdvertPublishTaskPageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,10 +34,12 @@ import { HttpModule } from '@angular/http';
     MaterialModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginPageComponent },
+      { path: 'login', component: LoginPageComponent, data: { label: '登录界面' } },
       {
-        path: 'advert', component: AdvertPageComponent, children: [
-          { path: '', component: AdvertHomePageComponent }
+        path: 'advert', component: AdvertPageComponent, data: { label: '广告商' },
+        children: [
+          { path: 'publish-task', component: AdvertPublishTaskPageComponent, data: { label: '发布广告' }, children: [] },
+          { path: '', component: AdvertHomePageComponent, data: { label: '首页' }, children: [] },
         ]
       }
     ]),

@@ -1,3 +1,23 @@
-<p>
-  advert-sidebar works!
-</p>
+<app-advert-header (onToggleMenu)="sidenav.toggle()"></app-advert-header>
+<md-sidenav-container class="container">
+    <md-sidenav #sidenav class="sidenav" [mode]="'side'" [opened]="true">
+        <md-list>
+            <h3 md-subheader>广告主</h3>
+            <md-list-item *ngFor="let childRoute of advertRoute.children" [routerLink]="[childRoute.path===''?'/advert':childRoute.path]">
+                <md-icon md-list-icon>folder</md-icon>
+                <h4 md-line>{{childRoute.data['label']}}</h4>
+                <!--<p md-line> {{folder.updated | date}} </p>-->
+            </md-list-item>
+            <md-divider></md-divider>
+
+        </md-list>
+        <!--<li *ngFor="let childRoute of advertRoute.children" [routerLink]="[childRoute.path===''?'/advert':childRoute.path]">{{childRoute.data.label}}</li>-->
+    </md-sidenav>
+    <div class="sidenav-content">
+        <div class="page">
+            <app-hash></app-hash>
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</md-sidenav-container>

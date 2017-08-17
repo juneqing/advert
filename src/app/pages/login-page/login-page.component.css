@@ -1,11 +1,12 @@
 .bg {
-    background: url(http://8.su.bdimg.com/skin/47.jpg);
+    background: url(http://8.su.bdimg.com/skin/47.jpg) no-repeat center center;
     background-size: cover;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    position: absolute;
     min-width: 100vw;
+    position: relative;
+    overflow: hidden;
 }
 
 .login-box {
@@ -15,10 +16,13 @@
     color: #666;
     border-radius: 15px;
     width: 500px;
+    position: absolute;
+    top: 30%;
+    left: 34%;
 }
 
 .login-box-msg {
-    font-size: 1.875rem;
+    font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 20px;
     margin: 0;
@@ -30,34 +34,19 @@
     width: 450px;
     min-height: 400px;
     position: relative;
-    top: 105px;
+    top: 25px;
     left: 0;
 }
 
-.login .checkbox {
-    position: absolute;
-    left: 45px;
-    top: 150px;
-}
-
 .btn-button {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-.form-control-feedback {
-    right: 66px;
-}
-
-.form-group {
-    margin-left: 25px;
-}
-
-.form-control {
-    width: 90%;
+.btn-button button {
+    margin-left: 20%;
 }
 
 .register {
-    width: 450px;
     min-height: 400px;
     position: relative;
     top: 10px;
@@ -83,7 +72,7 @@
 
 a {
     line-height: 42px;
-    color: #00C0EF;
+    color: #673ab7;
 }
 
 a:hover {
@@ -92,21 +81,26 @@ a:hover {
 
 .sig-item {
     margin-top: 28px;
-    clear: both;
 }
 
-.reg-content .sig-item .label-con {
-    width: 94px;
+.sig-item .example-full-width {
+    width: 89%;
+}
+
+.sig-item .authCode {
+    width: 58%;
+}
+
+.sig-item .pass {
+    width: 83%;
 }
 
 .sig-item .label-con {
-    float: left;
     width: 100px;
     line-height: 40px;
     font-size: 15px;
     color: #666;
     text-align: right;
-    margin-right: 15px;
 }
 
 .sig-item .required {
@@ -117,21 +111,38 @@ a:hover {
 
 .sig-item2 {
     margin-top: 18px;
+    margin-bottom: 5%;
+    margin-left: 35%;
+}
+
+.reg {
+    width: 155px;
 }
 
 .gray {
-    padding: 10px 20px;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
+    margin-left: 40%;
 }
 
 .authCode {
-    color: #fff;
     margin-top: 0;
     margin-bottom: 0;
     width: 80px;
     height: 27px;
     padding: 0;
     line-height: 27px;
+}
+
+.example-form {
+    width: 500px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.example-margin {
+    margin: 0 10px;
 }
