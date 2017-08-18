@@ -5,10 +5,12 @@
 }
 
 .sidenav-content {
+    margin-top: 62px;
     /*display: flex;*/
     /*height: 100%;*/
     /*align-items: center;*/
     /*justify-content: center;*/
+    background: #F5F5F5!important;
 }
 
 .sidenav {

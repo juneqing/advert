@@ -1,3 +1,104 @@
-<p>
-  advert-home-page works!
-</p>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">账户信息</h3>
+            </div>
+            <!-- /.box-header -->
+            <header class="page-topbar">
+                <div>
+                    <em class="key">账户余额(元)</em>
+                    <strong class="value fc-yellow">￥{{advert.money}}</strong>
+                </div>
+                <div>
+                    <em class="key">冻结资金(元)</em>
+                    <strong class="value fc-blue">￥{{advert.money /5}}</strong>
+                </div>
+            </header>
+        </div>
+        <section class="mod togglable-tabs">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">广告推广</h3>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane">
+                        <ul class="topbar-legends">
+                            <li><i class="legend l-red"></i>未审核：0个广告</li>
+                            <li><i class="legend l-green"></i>投放中：0个广告</li>
+                            <li><i class="legend l-gray"></i>已结束：0个广告</li>
+                        </ul>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="200">广告名称</th>
+                                    <th>投放平台</th>
+                                    <th>投放日期</th>
+                                    <th>点击单价（元）</th>
+                                    <th>广告金额</th>
+                                    <th>广告状态</th>
+                                    <th width="200">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let task of tasks;let i = index">
+                                    <td>{{task.title}}</td>
+                                    <td>社交分享广告</td>
+                                    <td>{{task.createDt | date:'yyyy-MM-dd HH:mm:ss' }}<br>{{task.startDt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                                    <td>{{task.shareMoney}}</td>
+                                    <td>{{task.totalMoney}}</td>
+                                    <td>草稿</td>
+                                    <td class="text-left">
+                                        <i class="fa fa-eye" (click)="selectedTaskTag=task;showTaskOneDayData(task)"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mod togglable-tabs">
+            <div class="box-header with-border">
+                <h3 class="box-title title">点击次数</h3>
+                <div class="pull-right">
+                    <button md-button (click)="step=0;showTaskOneDayData(selectedTask)" [class.typeShow]="step==0">最近24小时</button>
+                    <!-- <li (click)="step=0;showTaskOneDayData(selectedTask)" [class.typeShow]="step==0">
+                        <a>最近24小时</a>
+                    </li> -->
+                    <button md-button (click)="step=1;showTaskWeekData(selectedTask)" [class.typeShow]="step==1">最近一周</button>
+                    <!-- <li (click)="step=1;showTaskWeekData(selectedTask)" [class.typeShow]="step==1">
+                        <a>最近一周</a>
+                    </li> -->
+                    <button md-button (click)="step=2;showTaskWeekData(selectedTask)" [class.typeShow]="step==2">最近一周</button>
+                    <!-- <li (click)="step=2;showTaskMonthData(selectedTask)" [class.typeShow]="step==2">
+                        <a>最近一月</a>
+                    </li> -->
+                </div>
+            </div>
+
+            <div *ngIf="step==0">
+                <div style="display: block;">
+                    <canvas baseChart width="400" height="100" [datasets]="hour24" [labels]="hour24Labels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                            </canvas>
+                </div>
+            </div>
+            <div *ngIf="step==1">
+                <div style="display: block;">
+                    <canvas baseChart width="400" height="100" [datasets]="oneWeek" [labels]="oneWeekLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                            </canvas>
+                </div>
+            </div>
+            <div *ngIf="step==2">
+                <div style="display: block;">
+                    <canvas baseChart width="400" height="100" [datasets]="oneMonth" [labels]="oneMonthLables" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                            </canvas>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!-- /.content -->
+</div>

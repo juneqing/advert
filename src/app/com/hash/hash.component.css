@@ -1,0 +1,26 @@
+.top-tips-bar {
+    width: 100%;
+    height: 24px;
+    padding-left: 20px;
+    line-height: 24px;
+    font-size: 12px;
+    color: #ea2525;
+    background: #f6efc6;
+}
+
+.content-header,
+.breadcrumb {
+    padding-top: 50px;
+    padding-bottom: 26px;
+}
+
+.top-tips-bar .btn-close {
+    position: absolute;
+    right: 60px;
+    text-decoration: none;
+}
+
+.top-tips-bar>a {
+    text-decoration: underline;
+    color: #2297f1;
+}

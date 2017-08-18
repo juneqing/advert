@@ -1,0 +1,148 @@
+.page-content {
+    position: relative;
+}
+
+.content {
+    padding: 0 16px;
+    background: #F5F5F5;
+}
+
+.box-header .box-title {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+    font-weight: 500;
+}
+
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.box-header.with-border {
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.box-header {
+    color: #444;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+
+.mat-sidenav-content {
+    overflow: hidden;
+}
+
+.tab-pane {
+    clear: both;
+    overflow: hidden;
+}
+
+.tab-content {
+    /* position: relative; */
+    padding: 0 20px;
+    box-shadow: 0 1px 1px 0 #d3d5d6;
+}
+
+.page-topbar {
+    position: relative;
+    padding: 20px;
+    height: 131px;
+    box-shadow: 0 1px 1px 0 #d3d5d6;
+}
+
+.page-topbar div {
+    float: left;
+    width: 30%;
+    margin-left: 14%;
+}
+
+.page-topbar .key {
+    padding-top: 5px;
+    font-size: 16px;
+    font-style: normal;
+    color: #3c3c3c;
+}
+
+.page-topbar .key,
+.page-topbar .value {
+    display: block;
+    text-indent: 30%;
+}
+
+.table {
+    width: 100%;
+}
+
+.page-topbar .value {
+    padding-top: 15px;
+    font-size: 28px;
+}
+
+.fc-yellow {
+    color: #f8c25a;
+}
+
+.fc-blue {
+    color: #65a9e8;
+}
+
+.mod .topbar-legends {
+    float: left;
+    padding: 0;
+    margin: 10px;
+    list-style: none;
+    width: 100%;
+}
+
+.mod .topbar-legends li {
+    float: left;
+    margin-right: 70px;
+}
+
+.l-red {
+    background: #f7696b;
+}
+
+.l-green {
+    background: #4cbd8b;
+}
+
+.l-gray {
+    background: #737373;
+}
+
+.legend {
+    display: inline-block;
+    vertical-align: middle;
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    margin-right: 6px;
+}
+
+.with-border {
+    overflow: hidden;
+    clear: both;
+}
+
+.pull-right>button {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.typeShow {
+    border: 1px solid #673AB7;
+    color: #673AB7;
+}
+
+.title {
+    margin-left: 20px;
+}

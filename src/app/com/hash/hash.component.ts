@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
 import { Route, NavigationEnd } from '@angular/router';
+import { Types } from '../../types/types';
 @Component({
   selector: 'app-hash',
   templateUrl: './hash.component.html',
@@ -9,6 +10,8 @@ import { Route, NavigationEnd } from '@angular/router';
 export class HashComponent implements OnInit {
   currentRoute: Route;
   currentSecondRoute: Route;
+  showMessage = true;
+  advert: Types.Advert;
   constructor(public config: ConfigService) {
     this.logRouter();
     this.config.route.queryParamMap.forEach(rtn => console.log(rtn));

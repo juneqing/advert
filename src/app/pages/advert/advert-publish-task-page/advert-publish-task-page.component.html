@@ -1,3 +1,184 @@
-<p>
-  advert-publish-task-page works!
-</p>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <section class="content togglable-tabs">
+        <!--选项-->
+        <md-tab-group [selectedIndex]='step' (selectChange)="step=$event.index">
+            <!-- 基本信息 -->
+            <md-tab label="基本信息">
+                <div class="tab-pane">
+                    <!--广告类型-->
+                    <div class="form-group">
+                        <label class="control-label">
+                                <strong>广告类型</strong>
+                        </label>
+                        <md-checkbox color="primary" (click)="type='url'" [checked]="type=='url'?'checked':''">链接推广</md-checkbox>
+                        <!-- <div class="radio pull-left">
+                                            <label class="ml-20">
+                                                    <a routerLink="/advert/advert-template" class="advert-template">
+                                                        <input type="radio"  value="2" (click)="type='template'" [checked]="type=='template'?'checked':''">
+                                                        模版推广
+                                                    </a>
+                                            </label>
+                            </div> -->
+                    </div>
+                    <!--投放平台-->
+                    <div class="form-group">
+                        <label class="control-label"><strong>投放平台</strong></label>
+                        <md-checkbox color="primary" (click)="type='url'" [checked]="type=='url'?'checked':''" disabled="disabled"> 社交分享广告</md-checkbox>
+                    </div>
+                    <!--投放时间-->
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label"><strong>投放时间</strong></label>
+                        <md-input-container>
+                            <input mdInput [mdDatepicker]="picker" placeholder="请选择投放时间" [(ngModel)]="newTask.createDt">
+                            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                        </md-input-container>
+                        <md-datepicker #picker></md-datepicker>
+                    </div>
+                    <!--广告分类-->
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label"><strong>广告分类</strong></label>
+                        <button md-raised-button color="{{taskTag==selectedTaskTag?'primary':''}}" *ngFor="let taskTag of taskTags;let i = index" (click)="selectTaskTag(taskTag)">{{taskTag.name}}</button>
+                        <!-- <button class="btn btn-link {{taskTag==selectedTaskTag?'btn-info':''}}" *ngFor="let taskTag of taskTags;let i = index" (click)="selectTaskTag(taskTag)">{{taskTag.name}}</button> -->
+                    </div>
+                    <!--投放规则-->
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label"><strong>投放规则</strong></label>
+                        <div class="col-xs-10">
+                            <ol class="list-unstyled fc-gray2">
+                                <li>广告投放时间必须晚于当前时间1小时</li>
+                                <li>广告正式投放时间可能会在设定时间基础上延后10~15分钟</li>
+                                <li>23：00~6:00 不能进行广告投放</li>
+                                <li>广告结束时间以广告商费用低于20%时下线</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </md-tab>
+            <!-- 规格选择 -->
+            <md-tab label="规格选择">
+                <md-grid-list cols="4">
+                    <md-grid-tile colspan="2">
+                        <div class="form-group">
+                            <label class="control-label"><strong>分享标题</strong></label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请输入1~50字的分享标题" [(ngModel)]="newTask.title">
+                            </md-input-container>
+                        </div><br>
+                        <div class="form-group">
+                            <label class=" control-label"><strong>分享图片</strong></label>
+                            <!-- <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请点击选择图片..." [(ngModel)]="newTask.title">
+                            </md-input-container> -->
+                            <a class="upload-txt-box form-control">
+                                <span class="upload-tips">请点击选择图片...</span>
+                                <input type="file" name="file" class="upload-txt" placeholder="请上传25k以下，分辨率300*300以下的图片" (change)="uploadTaskImageUrl(taskImageUrlInput.files[0])" #taskImageUrlInput>
+                                <input type="url" [(ngModel)]="newTask.imageUrl" class="hide">
+                                <span class="upload-icon">
+                                                                <i class="fa fa-picture-o"></i>
+                                    </span>
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><strong>广告图片</strong></label>
+                            <div>
+                                <a class="upload-txt-box form-control">
+                                    <span class="upload-tips">请点击选择图片...</span>
+                                    <input type="file" name="file" class="upload-txt" placeholder="最佳分辨率大小360*200" (change)="uploadTaskBannerUrl(taskImageUrlInput.files[0])" #taskBannerUrlInput>
+                                    <span class="upload-icon"><i class="fa fa-picture-o"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><strong>外部链接</strong></label>
+                            <div>
+                                <input type="text" class="form-control" placeholder="请输入以http://为开头的标准地址" [(ngModel)]="newTask.websiteUrl">
+                            </div>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile colspan="2" style="background:red;">
+                        ss
+                    </md-grid-tile>
+
+                </md-grid-list>
+
+
+                <!--预览图  -->
+                <div class="preview-box" style="margin-left: -60px;">
+                    <strong class="topic">分享图片预览图</strong>
+                    <div class="imgView">
+                        <img [src]="newTask.imageUrl" alt="分享图片预览图" *ngIf="newTask.imageUrl" class="img-responsive" width="100%" height="100%" style="overflow: hidden;">
+                    </div>
+                </div>
+                <strong class="topic">广告图片预览图</strong>
+                <div class="imgView">
+                    <img [src]="newTask.bannerUrl" alt="广告图片预览图" *ngIf="newTask.bannerUrl" class="img-responsive" width="100%" height="100%" style="overflow: hidden;">
+                </div>
+                <p class="fc-red col-md-12">预览效果仅供参考，实际效果以APP效果为准。</p>
+            </md-tab>
+            <!-- 价格选择 -->
+            <md-tab label="价格选择">
+                <div role="tabpanel" class="tab-pane">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label"><strong>广告发布总价</strong></label>
+                                    <div class="col-xs-4">
+                                        <input type="text" class="form-control" placeholder="广告发布总价" [(ngModel)]="newTask.fee">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="chat_show_ad_times">
+                                    <label class="col-xs-2 control-label"><strong>广告点击单价</strong></label>
+                                    <div class="col-xs-4">
+                                        <input type="text" class="form-control" placeholder="广告点击单价" [(ngModel)]="newTask.shareMoney">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            <!-- 提交 -->
+            <md-tab label="确认提交">
+                <div role="tabpanel" class="tab-pane">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h3 class="mod-title mod-title-small">广告预览信息</h3>
+                            <div class="row">
+                                <div class="col-xs-3 text-right">广告名称：</div>
+                                <div class="col-xs-9 fc-blue">{{newTask.title}}</div>
+                            </div>
+                            <div class="row mt-20">
+                                <div class="col-xs-3 text-right">投放时间：</div>
+                                <div class="col-xs-9 fc-blue">{{newTask.createDt}}</div>
+                            </div>
+                            <div class="row mt-20">
+                                <div class="col-xs-3 text-right">广告分类：</div>
+                                <div class="col-xs-9 fc-blue">{{selectedTaskTag.name}}</div>
+                            </div>
+                            <div class="row mt-20">
+                                <div class="col-xs-3 text-right">广告链接：</div>
+                                <div class="col-xs-9 fc-blue" style="overflow: hidden;">{{newTask.websiteUrl}}</div>
+                            </div>
+                            <div class="row mt-20">
+                                <div class="col-xs-3 text-right">广告总价：</div>
+                                <div class="col-xs-9 fc-blue">{{newTask.fee}}</div>
+                            </div>
+                            <div class="row mt-20">
+                                <div class="col-xs-3 text-right">点击单价：</div>
+                                <div class="col-xs-9 fc-blue">{{newTask.shareMoney}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+        </md-tab-group>
+        <div class="tab-btn-bar">
+            <button md-raised-button color="primary" [disabled]="step==0?'disabled':false" (click)="step=step-1">上一步</button>
+            <button md-raised-button color="primary" *ngIf="step!=3" (click)="step=step+1" [disabled]="step==3?'disabled':false">下一步</button>
+            <button md-raised-button color="primary" *ngIf="step==3" (click)="saveNewItem()">提交</button>
+        </div>
+    </section>
+</div>

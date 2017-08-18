@@ -1,5 +1,12 @@
+<!-- Content Header (Page header) -->
+<div class="top-tips-bar" style="display: block;" *ngIf="showMessage">
+    您的账户信息不完整，请尽快补全。补全信息后通过审核方可进行广告投放。点击进入
+    <a href="#">账户中心</a>。
+    <a class="btn-close" (click)="showMessage=false">
+        <i class="fa fa-close"></i>
+    </a>
+</div>
 <md-toolbar>
-
-    <button md-raised-button *ngIf="currentRoute" [routerLink]="'/'+currentRoute.path" style="margin-right:10px;"> {{currentRoute?.data.label}}</button> /
-    <button md-raised-button *ngIf="currentSecondRoute" style="margin-left:10px;" [routerLink]="[currentSecondRoute.path==''?'/'+currentRoute.path:currentSecondRoute.path]"> {{currentSecondRoute.data.label}}</button>
+    <button md-raised-button *ngIf="currentRoute" [color]="currentSecondRoute?'':'primary'" [routerLink]="'/'+currentRoute.path" style="margin-right:10px;"> {{currentRoute?.data.label}}</button> /
+    <button md-raised-button [color]="currentSecondRoute?'primary':''" *ngIf="currentSecondRoute" style="margin-left:10px;" [routerLink]="[currentSecondRoute.path==''?'/'+currentRoute.path:currentSecondRoute.path]"> {{currentSecondRoute.data.label}}</button>
 </md-toolbar>

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdDatepickerModule, MdNativeDateModule } from '@angular/material';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RouterModule } from '@angular/router';
 import { AdvertPageComponent } from './pages/advert/advert-page/advert-page.component';
@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HashComponent } from './com/hash/hash.component';
 import { AdvertPublishTaskPageComponent } from './pages/advert/advert-publish-task-page/advert-publish-task-page.component';
-
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+// import {Dat} from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,15 +39,20 @@ import { AdvertPublishTaskPageComponent } from './pages/advert/advert-publish-ta
       {
         path: 'advert', component: AdvertPageComponent, data: { label: '广告商' },
         children: [
-          { path: 'publish-task', component: AdvertPublishTaskPageComponent, data: { label: '发布广告' }, children: [] },
           { path: '', component: AdvertHomePageComponent, data: { label: '首页' }, children: [] },
+          { path: 'publish-task', component: AdvertPublishTaskPageComponent, data: { label: '发布广告' }, children: [] },
+
         ]
       }
     ]),
     FormsModule,
-    HttpModule
+    HttpModule,
+    ChartsModule,
+    MdNativeDateModule,
+    MdDatepickerModule
+
   ],
-  providers: [ConfigService],
+  providers: [ConfigService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -27,7 +27,8 @@ md-toolbar {
 
 md-card-header {
     line-height: 40px;
-    padding: 12px;
+    /* padding: 12px; */
+    padding: 8px;
 }
 
 .example-header-image {
@@ -50,8 +51,3 @@ md-card-content {
     background: #673ab7;
     border-left: 1px solid purple;
 }
-
-
-/* .mat-button-toggle-label-content {
-    padding: 13px 16px;
-} */
