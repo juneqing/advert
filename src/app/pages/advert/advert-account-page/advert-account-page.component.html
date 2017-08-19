@@ -9,7 +9,30 @@
                 <div class="form-horizontal">
                     <div class="form-group">
                         <h4>认证</h4>
-                        <div class="platform">
+                        <md-grid-list cols="2" rowHeight="2:1">
+                            <!-- <md-grid-tile (click)="openDialog()" cols="1"> -->
+                            <div class="icon">
+                                <i class="fa fa-user-plus">&nbsp;</i>
+                            </div>
+                            <br>
+                            <strong class="topic">个人</strong><br>
+                            <p>个人类型广告主需上传<br>手持身份证照片</p>
+                            <!-- </md-grid-tile> -->
+                            <md-grid-tile (click)="openDialog()" colspan="1">
+                                <md-grid-tile (click)="openDialog()" rowspan="1">
+                                    <strong class="topic">企业</strong>
+                                </md-grid-tile>
+                                <md-grid-tile (click)="openDialog()" rowspan="1">
+                                    <div class="icon">
+                                        <i class="fa fa-institution">&nbsp;</i>
+                                    </div>
+                                </md-grid-tile>
+                                <md-grid-tile (click)="openDialog()" rowspan="1">
+                                    <p>企业类型广告主需提供<br>最新年检营业执照</p>
+                                </md-grid-tile>
+                            </md-grid-tile>
+                        </md-grid-list>
+                        <!-- <div class="platform">
                             <a class="platform-item">
                                 <div class="icon">
                                     <i class="fa fa-user-plus">&nbsp;</i>
@@ -24,7 +47,7 @@
                                 <strong class="topic">企业</strong>
                                 <p>企业类型广告主需提供<br>最新年检营业执照</p>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </md-tab>

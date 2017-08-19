@@ -50,14 +50,14 @@
                                     <td>{{task.createDt | date:'yyyy-MM-dd HH:mm:ss' }}<br>{{task.startDt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
                                     <td>{{task.shareMoney}}</td>
                                     <td mdTooltip="{{task.totalMoney}}">
-                                        <md-progress-bar [color]="task.totalMoney/task.fee*100 >20?'primary':'warn'" [value]="task.totalMoney/task.fee*100"></md-progress-bar>
+                                        <md-progress-bar [color]="task.totalMoney/task.fee*100 >=20?'primary':'warn'" [value]="task.totalMoney/task.fee*100"></md-progress-bar>
                                     </td>
                                     <!-- <td>{{task.totalMoney}}</td> -->
                                     <td>{{task.fee}}</td>
                                     <td>草稿</td>
                                     <td class="text-left">
                                         <i class="fa fa-eye " (click)="selectedTaskTag=task;showTaskOneDayData(task)" style="cursor: pointer;color:blueviolet;"></i>&nbsp;&nbsp;
-                                        <md-slide-toggle color="primary" [checked]="task.active" (change)="toggleTaskActive(task)" [style.color]="task.active?'green':'red'">{{task.active?'启用':'禁用'}}</md-slide-toggle>&nbsp;&nbsp;
+                                        <md-slide-toggle color="primary" [checked]="task.active" [disabled]="task.totalMoney/task.fee*100 <=20" (change)="toggleTaskActive(task)" [style.color]="task.active?'green':'red'">{{task.active?'启用':'禁用'}}</md-slide-toggle>&nbsp;&nbsp;
                                         <i (click)="editTask(task)" class="fa fa-pencil-square-o" aria-hidden="true" style="color:blueviolet;cursor: pointer;"></i>
                                     </td>
                                 </tr>
