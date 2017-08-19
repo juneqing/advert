@@ -24,9 +24,10 @@ ul li {
     list-style: none;
 }
 
-.active {
+
+/* .active {
     background: rebeccapurple;
-}
+} */
 
 .mat-sidenav-content {
     overflow-x: hidden!important;

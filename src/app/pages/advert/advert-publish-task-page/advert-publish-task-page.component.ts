@@ -28,18 +28,24 @@ export class AdvertPublishTaskPageComponent implements OnInit {
     bannerUrl: '',
     taskTag: '',
   };
+  isNew: boolean = true;
   bannerUrlSafe: SafeStyle;
-  tiles = [
-    { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
-    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
-  ];
   constructor(public config: ConfigService, public safe: DomSanitizer) {
     this.getTaskTagList();
+    // 编辑任务的ID
+    let taskId = this.config.route.snapshot.queryParams.taskId;
+    if (taskId) {
+      this.getTaskById(taskId);
+      this.isNew = false;
+    }
+
   }
 
   ngOnInit() {
+  }
+  async getTaskById(_id: string) {
+    this.newTask = await this.config.Get('/advert.task.go?_id=' + _id)
+    this.step = 3;
   }
   selectTaskTag(taskTag: Types.ITaskTag) {
 
@@ -60,22 +66,29 @@ export class AdvertPublishTaskPageComponent implements OnInit {
 
   }
 
-
+  // 上传图片
   async uploadTaskImageUrl(file: File) {
-    let base64 = await this.config.convertFileToBase64(file);
-    let compressData = await this.config.compressBase64(base64);
+    let base64 = await this.config.convertFileToBase64(file);//图片转换成base64位
+    let compressData = await this.config.compressBase64(base64);//压缩图片
     this.newTask.imageUrl = await this.config.PostLocal(`/api.uploadBase64.go`, { base64: compressData });
   }
+  // 上传广告banner图
   async uploadTaskBannerUrl(file: File) {
     let base64 = await this.config.convertFileToBase64(file);
     // let compressData = await this.config.compressBase64(base64);
     this.newTask.bannerUrl = await this.config.PostLocal(`/api.uploadBase64.go`, { base64 });
   }
+  //任务修改
   async saveNewItem() {
-    this.newTask.taskTag = this.selectedTaskTag._id;
-    this.newTask.publisher = this.config.advert._id;
-    let result = await this.config.Post('/advert.publishTask.go', this.newTask);
+    if (this.isNew) {
+      this.newTask.taskTag = this.selectedTaskTag._id;
+      this.newTask.publisher = this.config.advert._id;
+      let result = await this.config.Post('/advert.publishTask.go', this.newTask);
+    } else {
+      await this.config.Put('/advert.editTask.go?_id=' + this.newTask._id, this.newTask);
+    }
     this.config.router.navigateByUrl('/advert');
+
   }
 
 

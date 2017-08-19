@@ -1,0 +1,93 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content togglable-tabs">
+        <!--选项-->
+        <md-tab-group [selectedIndex]='step' (selectChange)="step=$event.index">
+            <!--基本信息  -->
+            <md-tab label="基本信息">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <h4>认证</h4>
+                        <div class="platform">
+                            <a class="platform-item">
+                                <div class="icon">
+                                    <i class="fa fa-user-plus">&nbsp;</i>
+                                </div>
+                                <strong class="topic">个人</strong>
+                                <p>个人类型广告主需上传<br>手持身份证照片</p>
+                            </a>
+                            <a class="platform-item">
+                                <div class="icon">
+                                    <i class="fa fa-institution">&nbsp;</i>
+                                </div>
+                                <strong class="topic">企业</strong>
+                                <p>企业类型广告主需提供<br>最新年检营业执照</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            <!-- 安全设置-->
+            <md-tab label="安全设置">
+                <div role="tabpanel" class="tab-pane" [class.active]="step==1" *ngIf="step==1">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <h4 class="title">您的基础信息</h4>
+                            <div class="mt-20">
+                                <label class="control-label">
+                                         <strong>手机号码:</strong>
+                                    </label>
+                                <div class="fc-blue">
+                                    <!-- {{advert.phone}} -->
+                                </div>
+                                <div>
+                                    <button type="btn" class="btn btn-info">修改手机</button>
+                                </div>
+                            </div>
+                            <div class="mt-20">
+                                <label class="control-label">
+                                        <strong>登陆邮箱:</strong>
+                                     </label>
+                                <div class="fc-blue">
+                                    <!-- {{advert.email||advert.phone}} -->
+                                </div>
+                                <div>
+                                    <button type="btn" class="btn btn-info">设置邮箱</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--您的安全服务-->
+                        <div class="form-group">
+                            <h4 class="title">您的安全服务</h4>
+                            <div class="row mt-20">
+                                <label class="control-label">
+                                         <strong>登陆密码</strong>
+                                    </label>
+                                <div class="fc-blue">
+                                    安全性高的密码可以使帐号更安全。建议您定期更换密码，且设置一个包含数字和字母，并长度超过6位以上的密码。
+                                </div>
+                                <div>
+                                    <button type="btn" class="btn btn-info">修改</button>
+                                </div>
+                            </div>
+                            <div class="mt-20">
+                                <label class="control-label">
+                                        <strong>登陆邮箱</strong>
+                                     </label>
+                                <div class="fc-blue">
+                                    绑定邮箱后，您即可享受丰富的邮箱服务，如邮箱登录、邮箱找回密码等。
+                                </div>
+                                <div>
+                                    <button type="btn" class="btn btn-info">绑定</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </md-tab>
+        </md-tab-group>
+    </section>
+</div>

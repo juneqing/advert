@@ -17,6 +17,7 @@ import { HttpModule } from '@angular/http';
 import { HashComponent } from './com/hash/hash.component';
 import { AdvertPublishTaskPageComponent } from './pages/advert/advert-publish-task-page/advert-publish-task-page.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { AdvertAccountPageComponent } from './pages/advert/advert-account-page/advert-account-page.component';
 // import {Dat} from '@angular/common';
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     AdvertHeaderComponent,
     AdvertSidebarComponent,
     HashComponent,
-    AdvertPublishTaskPageComponent
+    AdvertPublishTaskPageComponent,
+    AdvertAccountPageComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
         children: [
           { path: '', component: AdvertHomePageComponent, data: { label: '首页' }, children: [] },
           { path: 'publish-task', component: AdvertPublishTaskPageComponent, data: { label: '发布广告' }, children: [] },
-
+          { path: 'advert-account', component: AdvertAccountPageComponent, data: { label: '我的账户' }, children: [] }
         ]
       }
     ]),

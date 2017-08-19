@@ -20,6 +20,7 @@
     box-shadow: 0 2px 2px 0 #d3d5d6;
     background: #fff;
     border: 1px solid gray;
+    min-height: 610px;
 }
 
 md-grid-tile .form-group {
@@ -66,10 +67,6 @@ md-grid-tile .form-group {
     font-weight: 700;
 }
 
-.form-control {
-    border-color: #e4eaec;
-}
-
 .upload-txt-box .upload-txt {
     position: absolute;
     right: 0;
@@ -105,7 +102,6 @@ md-grid-tile .form-group {
     padding: 15px 10px;
     width: 90%;
     height: 90%;
-    /* border: 1px dashed gray; */
 }
 
 .imgView {
@@ -116,7 +112,7 @@ md-grid-tile .form-group {
 
 .preview-box .topic {
     position: absolute;
-    top: 30px;
+    top: 120px;
     left: 0;
     width: 20px;
     text-align: center;
@@ -145,6 +141,7 @@ md-grid-tile .form-group {
 
 .mt-20 {
     margin-top: 20px !important;
+    margin-top: 10px;
 }
 
 .togglable-tabs .tab-btn-bar {
@@ -160,9 +157,11 @@ button {
     width: 80%;
 }
 
-.banner-image {
-    padding-top: 52%;
-    height: 0%;
-    background-size: 100%;
-    background-repeat: no-repeat;
+.list-unstyled {
+    color: red;
+}
+
+.list-unstyled li {
+    margin-bottom: 10px;
+    margin-left: 35px;
 }

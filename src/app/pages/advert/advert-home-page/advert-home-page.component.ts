@@ -54,6 +54,12 @@ export class AdvertHomePageComponent implements OnInit {
 
 
   }
+  //启用/禁用任务
+  async toggleTaskActive(task: Types.ITask) {
+    await this.config.Put('/advert.taskActive.go?_id=' + task._id, { active: !task.active });
+    await this.taskList();
+
+  }
   async showTaskWeekData(task: Types.ITask) {
     let oneWeekData = await this.config.Get('/advert.taskWeekData.go?taskId=' + task._id);
     this.selectedTask = task;
@@ -112,5 +118,9 @@ export class AdvertHomePageComponent implements OnInit {
 
   public chartHovered(e: any): void {
     console.log(e);
+  }
+
+  editTask(task: Types.ITask) {
+    this.config.router.navigateByUrl('/advert/publish-task?taskId=' + task._id);
   }
 }

@@ -37,9 +37,10 @@
                                     <th>投放平台</th>
                                     <th>投放日期</th>
                                     <th>点击单价（元）</th>
-                                    <th>广告金额</th>
+                                    <th>广告余额（元）</th>
+                                    <th>广告资费（元）</th>
                                     <th>广告状态</th>
-                                    <th width="200">操作</th>
+                                    <th width="200">操&nbsp;&nbsp;&nbsp;作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,10 +49,16 @@
                                     <td>社交分享广告</td>
                                     <td>{{task.createDt | date:'yyyy-MM-dd HH:mm:ss' }}<br>{{task.startDt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
                                     <td>{{task.shareMoney}}</td>
-                                    <td>{{task.totalMoney}}</td>
+                                    <td mdTooltip="{{task.totalMoney}}">
+                                        <md-progress-bar [color]="task.totalMoney/task.fee*100 >20?'primary':'warn'" [value]="task.totalMoney/task.fee*100"></md-progress-bar>
+                                    </td>
+                                    <!-- <td>{{task.totalMoney}}</td> -->
+                                    <td>{{task.fee}}</td>
                                     <td>草稿</td>
                                     <td class="text-left">
-                                        <i class="fa fa-eye " (click)="selectedTaskTag=task;showTaskOneDayData(task)" style="cursor: pointer;"></i>
+                                        <i class="fa fa-eye " (click)="selectedTaskTag=task;showTaskOneDayData(task)" style="cursor: pointer;color:blueviolet;"></i>&nbsp;&nbsp;
+                                        <md-slide-toggle color="primary" [checked]="task.active" (change)="toggleTaskActive(task)" [style.color]="task.active?'green':'red'">{{task.active?'启用':'禁用'}}</md-slide-toggle>&nbsp;&nbsp;
+                                        <i (click)="editTask(task)" class="fa fa-pencil-square-o" aria-hidden="true" style="color:blueviolet;cursor: pointer;"></i>
                                     </td>
                                 </tr>
                             </tbody>
@@ -60,42 +67,31 @@
                 </div>
             </div>
         </section>
-
         <section class="mod togglable-tabs">
             <div class="box-header with-border">
                 <h3 class="box-title title">点击次数</h3>
                 <div class="pull-right">
                     <button md-button (click)="step=0;showTaskOneDayData(selectedTask)" [class.typeShow]="step==0">最近24小时</button>
-                    <!-- <li (click)="step=0;showTaskOneDayData(selectedTask)" [class.typeShow]="step==0">
-                        <a>最近24小时</a>
-                    </li> -->
                     <button md-button (click)="step=1;showTaskWeekData(selectedTask)" [class.typeShow]="step==1">最近一周</button>
-                    <!-- <li (click)="step=1;showTaskWeekData(selectedTask)" [class.typeShow]="step==1">
-                        <a>最近一周</a>
-                    </li> -->
                     <button md-button (click)="step=2;showTaskMonthData(selectedTask)" [class.typeShow]="step==2">最近一个月</button>
-                    <!-- <li (click)="step=2;showTaskMonthData(selectedTask)" [class.typeShow]="step==2">
-                        <a>最近一月</a>
-                    </li> -->
                 </div>
             </div>
-
             <div *ngIf="step==0">
                 <div style="display: block;">
                     <canvas baseChart width="400" height="100" [datasets]="hour24" [labels]="hour24Labels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                            </canvas>
+                   </canvas>
                 </div>
             </div>
             <div *ngIf="step==1">
                 <div style="display: block;">
                     <canvas baseChart width="400" height="100" [datasets]="oneWeek" [labels]="oneWeekLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                            </canvas>
+                    </canvas>
                 </div>
             </div>
             <div *ngIf="step==2">
                 <div style="display: block;">
                     <canvas baseChart width="400" height="100" [datasets]="oneMonth" [labels]="oneMonthLables" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                            </canvas>
+                    </canvas>
                 </div>
             </div>
         </section>
