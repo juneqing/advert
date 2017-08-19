@@ -51,7 +51,7 @@
                                     <td>{{task.totalMoney}}</td>
                                     <td>草稿</td>
                                     <td class="text-left">
-                                        <i class="fa fa-eye" (click)="selectedTaskTag=task;showTaskOneDayData(task)"></i>
+                                        <i class="fa fa-eye " (click)="selectedTaskTag=task;showTaskOneDayData(task)" style="cursor: pointer;"></i>
                                     </td>
                                 </tr>
                             </tbody>
@@ -73,7 +73,7 @@
                     <!-- <li (click)="step=1;showTaskWeekData(selectedTask)" [class.typeShow]="step==1">
                         <a>最近一周</a>
                     </li> -->
-                    <button md-button (click)="step=2;showTaskWeekData(selectedTask)" [class.typeShow]="step==2">最近一周</button>
+                    <button md-button (click)="step=2;showTaskMonthData(selectedTask)" [class.typeShow]="step==2">最近一个月</button>
                     <!-- <li (click)="step=2;showTaskMonthData(selectedTask)" [class.typeShow]="step==2">
                         <a>最近一月</a>
                     </li> -->

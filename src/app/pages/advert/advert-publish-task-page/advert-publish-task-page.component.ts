@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { ConfigService } from '../../../services/config.service';
 import { Types } from '../../../types';
 
@@ -27,13 +28,14 @@ export class AdvertPublishTaskPageComponent implements OnInit {
     bannerUrl: '',
     taskTag: '',
   };
+  bannerUrlSafe: SafeStyle;
   tiles = [
     { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
     { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
     { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
-  constructor(public config: ConfigService) {
+  constructor(public config: ConfigService, public safe: DomSanitizer) {
     this.getTaskTagList();
   }
 
@@ -51,6 +53,11 @@ export class AdvertPublishTaskPageComponent implements OnInit {
     this.taskTags = await this.config.Get('/advert.taskTags.go');
 
     this.selectedTaskTag = this.taskTags[0];
+  }
+
+  safeBackground(url) {
+    this.bannerUrlSafe = this.safe.bypassSecurityTrustStyle('url(' + url + ')')
+
   }
 
 

@@ -58,84 +58,94 @@
             </md-tab>
             <!-- 规格选择 -->
             <md-tab label="规格选择">
-                <md-grid-list cols="4">
-                    <md-grid-tile colspan="2">
+                <md-grid-list cols="8" rowHeight="100px">
+                    <md-grid-tile colspan="4">
                         <div class="form-group">
                             <label class="control-label"><strong>分享标题</strong></label>
                             <md-input-container class="example-full-width">
                                 <input mdInput placeholder="请输入1~50字的分享标题" [(ngModel)]="newTask.title">
                             </md-input-container>
-                        </div><br>
-                        <div class="form-group">
-                            <label class=" control-label"><strong>分享图片</strong></label>
-                            <!-- <md-input-container class="example-full-width">
-                                <input mdInput placeholder="请点击选择图片..." [(ngModel)]="newTask.title">
-                            </md-input-container> -->
-                            <a class="upload-txt-box form-control">
-                                <span class="upload-tips">请点击选择图片...</span>
-                                <input type="file" name="file" class="upload-txt" placeholder="请上传25k以下，分辨率300*300以下的图片" (change)="uploadTaskImageUrl(taskImageUrlInput.files[0])" #taskImageUrlInput>
-                                <input type="url" [(ngModel)]="newTask.imageUrl" class="hide">
-                                <span class="upload-icon">
-                                                                <i class="fa fa-picture-o"></i>
-                                    </span>
-                            </a>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label"><strong>广告图片</strong></label>
-                            <div>
-                                <a class="upload-txt-box form-control">
-                                    <span class="upload-tips">请点击选择图片...</span>
-                                    <input type="file" name="file" class="upload-txt" placeholder="最佳分辨率大小360*200" (change)="uploadTaskBannerUrl(taskImageUrlInput.files[0])" #taskBannerUrlInput>
-                                    <span class="upload-icon"><i class="fa fa-picture-o"></i></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label"><strong>外部链接</strong></label>
-                            <div>
-                                <input type="text" class="form-control" placeholder="请输入以http://为开头的标准地址" [(ngModel)]="newTask.websiteUrl">
+                    </md-grid-tile>
+                    <!--预览图  -->
+                    <md-grid-tile rowspan="4" colspan="2">
+                        <div class="preview-box">
+                            <strong class="topic">分享图片预览图</strong>
+                            <div class="imgView">
+                                <img [src]="newTask.imageUrl" alt="分享图片预览图" *ngIf="newTask.imageUrl" class="img-responsive" width="100%" height="auto" style="overflow: hidden;">
                             </div>
                         </div>
                     </md-grid-tile>
-                    <md-grid-tile colspan="2" style="background:red;">
-                        ss
+                    <md-grid-tile rowspan="4" colspan="2">
+                        <div class="preview-box">
+                            <strong class="topic">广告图片预览图</strong>
+                            <!-- <div class="banner-image" [style.background-image]="bannerUrlSafe" *ngIf="bannerUrlSafe">
+                                <img _ngcontent-c12="" alt="分享图片预览图" class="img-responsive" height="auto" style="overflow: hidden;padding-top: 52%;display: none;background: url(http://47.92.87.28/upload/1503109578910test.png);" width="100%" src="http://47.92.87.28/upload/1503109578910test.png">
+                            </div> -->
+                            <div class="imgView">
+                                <img [src]="newTask.bannerUrl" alt="广告图片预览图" *ngIf="newTask.bannerUrl" class="img-responsive" width="100%" height="auto" style="overflow: hidden;">
+                            </div>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile colspan="4">
+                        <div class="form-group">
+                            <label class=" control-label"><strong>分享图片</strong></label>
+                            <a class="upload-txt-box form-control">
+                                <span class="upload-tips" style="display:none"> 请点击选择图片...</span>
+                                <input type="file" style="display:none" id="file" name="file" class="upload-txt" placeholder="请上传25k以下，分辨率640*280以下的图片" (change)="uploadTaskImageUrl(taskImageUrlInput.files[0])" #taskImageUrlInput>
+                                <md-input-container class="example-full-width">
+                                    <input mdInput placeholder="自定义图片地址或者上传图片" [(ngModel)]="newTask.imageUrl">
+                                </md-input-container>
+                                <label class="upload-icon" for="file" mdTooltip="请上传25k以下，分辨率640*280以下的图片">
+                                    <i class="fa fa-picture-o"></i>
+                                </label>
+                            </a>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile colspan="4">
+                        <div class="form-group">
+                            <label class="control-label"><strong>广告图片</strong></label>
+                            <a class="upload-txt-box form-control">
+                                <span class="upload-tips" style="display:none">请点击选择图片...</span>
+                                <input type="file" name="file" class="upload-txt" id="dbfile" placeholder="最佳分辨率大小360*200" (change)="uploadTaskBannerUrl(taskBannerUrlInput.files[0])" #taskBannerUrlInput>
+                                <md-input-container class="example-full-width">
+                                    <input mdInput placeholder="自定义图片地址或者上传图片" [(ngModel)]="newTask.bannerUrl" (change)="safeBackground(newTask.bannerUrl)">
+                                </md-input-container>
+                                <label class="upload-icon" for="dbfile" mdTooltip="请上传25k以下，分辨率640*280以下的图片">
+                                    <i class="fa fa-picture-o"></i>
+                               </label>
+                            </a>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile colspan="4">
+                        <div class="form-group">
+                            <label class="control-label"><strong>外部链接</strong></label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请输入以http://为开头的标准地址" [(ngModel)]="newTask.websiteUrl">
+                            </md-input-container>
+                            <!-- <input type="text" class="form-control" placeholder="请输入以http://为开头的标准地址" [(ngModel)]="newTask.websiteUrl"> -->
+
+                        </div>
                     </md-grid-tile>
 
                 </md-grid-list>
-
-
-                <!--预览图  -->
-                <div class="preview-box" style="margin-left: -60px;">
-                    <strong class="topic">分享图片预览图</strong>
-                    <div class="imgView">
-                        <img [src]="newTask.imageUrl" alt="分享图片预览图" *ngIf="newTask.imageUrl" class="img-responsive" width="100%" height="100%" style="overflow: hidden;">
-                    </div>
-                </div>
-                <strong class="topic">广告图片预览图</strong>
-                <div class="imgView">
-                    <img [src]="newTask.bannerUrl" alt="广告图片预览图" *ngIf="newTask.bannerUrl" class="img-responsive" width="100%" height="100%" style="overflow: hidden;">
-                </div>
-                <p class="fc-red col-md-12">预览效果仅供参考，实际效果以APP效果为准。</p>
+                <p class="fc-red pull-right">预览效果仅供参考，实际效果以APP效果为准。</p>
             </md-tab>
             <!-- 价格选择 -->
             <md-tab label="价格选择">
                 <div role="tabpanel" class="tab-pane">
                     <div class="form-horizontal">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <label class="col-xs-2 control-label"><strong>广告发布总价</strong></label>
-                                    <div class="col-xs-4">
-                                        <input type="text" class="form-control" placeholder="广告发布总价" [(ngModel)]="newTask.fee">
-                                    </div>
-                                </div>
-                                <div class="form-group" id="chat_show_ad_times">
-                                    <label class="col-xs-2 control-label"><strong>广告点击单价</strong></label>
-                                    <div class="col-xs-4">
-                                        <input type="text" class="form-control" placeholder="广告点击单价" [(ngModel)]="newTask.shareMoney">
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label class="control-label"><strong>广告发布总价</strong></label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="广告发布总价" [(ngModel)]="newTask.fee">
+                            </md-input-container>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><strong>广告点击单价</strong></label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="广告点击单价" [(ngModel)]="newTask.shareMoney">
+                            </md-input-container>
                         </div>
                     </div>
                 </div>
@@ -143,34 +153,30 @@
             <!-- 提交 -->
             <md-tab label="确认提交">
                 <div role="tabpanel" class="tab-pane">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <h3 class="mod-title mod-title-small">广告预览信息</h3>
-                            <div class="row">
-                                <div class="col-xs-3 text-right">广告名称：</div>
-                                <div class="col-xs-9 fc-blue">{{newTask.title}}</div>
-                            </div>
-                            <div class="row mt-20">
-                                <div class="col-xs-3 text-right">投放时间：</div>
-                                <div class="col-xs-9 fc-blue">{{newTask.createDt}}</div>
-                            </div>
-                            <div class="row mt-20">
-                                <div class="col-xs-3 text-right">广告分类：</div>
-                                <div class="col-xs-9 fc-blue">{{selectedTaskTag.name}}</div>
-                            </div>
-                            <div class="row mt-20">
-                                <div class="col-xs-3 text-right">广告链接：</div>
-                                <div class="col-xs-9 fc-blue" style="overflow: hidden;">{{newTask.websiteUrl}}</div>
-                            </div>
-                            <div class="row mt-20">
-                                <div class="col-xs-3 text-right">广告总价：</div>
-                                <div class="col-xs-9 fc-blue">{{newTask.fee}}</div>
-                            </div>
-                            <div class="row mt-20">
-                                <div class="col-xs-3 text-right">点击单价：</div>
-                                <div class="col-xs-9 fc-blue">{{newTask.shareMoney}}</div>
-                            </div>
-                        </div>
+                    <h3 class="mod-title mod-title-small">广告预览信息</h3>
+                    <div>
+                        <span class="text-right">广告名称：</span>
+                        <label class="fc-blue">{{newTask.title}}</label>
+                    </div>
+                    <div class="mt-20">
+                        <span class="text-right">投放时间：</span>
+                        <label class="fc-blue">{{newTask.createDt|date:"yyyy-MM-dd HH:mm:ss"}}</label>
+                    </div>
+                    <div class="mt-20">
+                        <span class="text-right">广告分类：</span>
+                        <label class="fc-blue">{{selectedTaskTag.name}}</label>
+                    </div>
+                    <div class="mt-20">
+                        <span class="text-right">广告链接：</span>
+                        <label class="fc-blue" style="overflow: hidden;">{{newTask.websiteUrl}}</label>
+                    </div>
+                    <div class="mt-20">
+                        <span class="text-right">广告总价：</span>
+                        <label class="fc-blue">{{newTask.fee}}</label>
+                    </div>
+                    <div class="mt-20">
+                        <span class="text-right">点击单价：</span>
+                        <label class="fc-blue">{{newTask.shareMoney}}</label>
                     </div>
                 </div>
             </md-tab>
