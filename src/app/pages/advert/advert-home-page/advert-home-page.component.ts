@@ -19,7 +19,7 @@ export class AdvertHomePageComponent implements OnInit {
     '13时', '14时', '15时', '16时', '17时', '18时',
     '19时', '20时', '21时', '22时', '23时', '24时'];
   oneWeek: Array<any> = [{ data: [0, 0, 0, 0, 0, 0, 0], label: '每天点击次数' }];
-  oneWeekLabels = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  oneWeekLabels = ['周六', '周日', '周一', '周二', '周三', '周四', '周五'];
   oneMonth: Array<any> = [{
     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -27,7 +27,7 @@ export class AdvertHomePageComponent implements OnInit {
       0
     ], label: '每天点击次数'
   }];
-  oneMonthLables = new Array(31).fill('').map((value, index) => index + 1);
+  oneMonthLables = new Array(31).fill('').map((value, index) => index);
   constructor(public config: ConfigService) {
     this.advert = this.config.advert;
     this.taskList();

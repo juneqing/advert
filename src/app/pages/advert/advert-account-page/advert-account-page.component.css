@@ -82,3 +82,12 @@ md-grid-list {
 .cancel {
     margin-left: 135px;
 }
+
+.authentication>md-grid-tile {
+    border: 1px solid gray;
+}
+
+.notice {
+    margin-left: 10px;
+    color: red;
+}

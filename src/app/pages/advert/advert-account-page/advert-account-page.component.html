@@ -7,17 +7,33 @@
             <!--基本信息  -->
             <md-tab label="基本信息">
                 <div class="form-horizontal">
-                    <div class="form-group">
+                    <div class="form-group authentication">
                         <h4>认证</h4>
-                        <md-grid-list cols="2" rowHeight="2:1">
-                            <!-- <md-grid-tile (click)="openDialog()" cols="1"> -->
+                        <md-grid-list cols="2" rowHeight="50px">
+                            <md-grid-tile rowspan="3">
+                                <div class="icon">
+                                    <i class="fa fa-user-plus">&nbsp;</i>
+                                </div>
+                                <strong class="topic">个人</strong><br>
+                                <p>个人类型广告主需上传<br>手持身份证照片</p>
+                            </md-grid-tile>
+                            <md-grid-tile rowspan="3">
+                                <div class="icon">
+                                    <i class="fa fa-institution">&nbsp;</i>
+                                </div>
+                                <strong class="topic">企业</strong>
+                                <p>企业类型广告主需提供<br>最新年检营业执照</p>
+                            </md-grid-tile>
+                        </md-grid-list>
+
+
+                        <!-- <md-grid-list cols="2" rowHeight="2:1">
                             <div class="icon">
                                 <i class="fa fa-user-plus">&nbsp;</i>
                             </div>
                             <br>
                             <strong class="topic">个人</strong><br>
                             <p>个人类型广告主需上传<br>手持身份证照片</p>
-                            <!-- </md-grid-tile> -->
                             <md-grid-tile (click)="openDialog()" colspan="1">
                                 <md-grid-tile (click)="openDialog()" rowspan="1">
                                     <strong class="topic">企业</strong>
@@ -31,7 +47,7 @@
                                     <p>企业类型广告主需提供<br>最新年检营业执照</p>
                                 </md-grid-tile>
                             </md-grid-tile>
-                        </md-grid-list>
+                        </md-grid-list> -->
                         <!-- <div class="platform">
                             <a class="platform-item">
                                 <div class="icon">
@@ -86,8 +102,10 @@
                                     绑定邮箱后，您即可享受丰富的邮箱服务，如邮箱登录、邮箱找回密码等。
                                 </md-grid-tile>
                                 <md-grid-tile>
-                                    <button md-raised-button color="primary">
-                                            <md-dialog-content>绑定</md-dialog-content></button>
+                                    <button md-raised-button color="primary" (click)="statu='notice'" [class.active]="statu=='notice'">绑定</button>
+                                    <span class="notice" *ngIf="statu=='notice'">
+                                        <i class="fa fa-exclamation-circle">你还没有绑定邮箱!</i>
+                                    </span>
                                 </md-grid-tile>
                             </md-grid-list>
                         </div>
