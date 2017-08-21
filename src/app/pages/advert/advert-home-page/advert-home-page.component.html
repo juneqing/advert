@@ -48,8 +48,8 @@
                                     <td>{{task.title}}</td>
                                     <td>社交分享广告</td>
                                     <td>{{task.createDt | date:'yyyy-MM-dd HH:mm:ss' }}<br>{{task.startDt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
-                                    <td>{{task.shareMoney}}</td>
-                                    <td mdTooltip="{{task.totalMoney}}">
+                                    <td>{{task.shareMoney | money}}</td>
+                                    <td mdTooltip="{{task.totalMoney|money}}">
                                         <md-progress-bar [color]="task.totalMoney/task.fee*100 >=20?'primary':'warn'" [value]="task.totalMoney/task.fee*100"></md-progress-bar>
                                     </td>
                                     <!-- <td>{{task.totalMoney}}</td> -->

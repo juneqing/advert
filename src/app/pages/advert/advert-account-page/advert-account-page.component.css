@@ -16,3 +16,69 @@
     font-size: 83px;
     color: #673AB7;
 }
+
+.form-group {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.title {
+    font-size: 14px;
+    color: #76838f;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.fc-purple {
+    color: #673AB7;
+}
+
+md-grid-list {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    margin-left: 115px;
+    display: block;
+}
+
+.topLine {
+    border-top: 1px dashed gray;
+}
+
+.titles {
+    border-bottom: 1px solid #673AB7;
+    width: 440px;
+    line-height: 38px;
+    margin-left: 10%;
+}
+
+.sig-item {
+    margin-left: 10%;
+}
+
+.sig-item .label-con {
+    width: 100px;
+    line-height: 40px;
+    font-size: 15px;
+    color: #666;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.example-full-width {
+    width: 350px;
+}
+
+.authCode {
+    width: 247px;
+}
+
+.btn button {
+    margin-right: 20px;
+}
+
+.cancel {
+    margin-left: 135px;
+}

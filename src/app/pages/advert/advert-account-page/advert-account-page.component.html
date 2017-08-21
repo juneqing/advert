@@ -53,63 +53,138 @@
             </md-tab>
             <!-- 安全设置-->
             <md-tab label="安全设置">
-                <div role="tabpanel" class="tab-pane" [class.active]="step==1" *ngIf="step==1">
+                <div class="tab-pane">
                     <div class="form-horizontal">
                         <div class="form-group">
                             <h4 class="title">您的基础信息</h4>
-                            <div class="mt-20">
-                                <label class="control-label">
-                                         <strong>手机号码:</strong>
-                                    </label>
-                                <div class="fc-blue">
-                                    <!-- {{advert.phone}} -->
-                                </div>
-                                <div>
-                                    <button type="btn" class="btn btn-info">修改手机</button>
-                                </div>
-                            </div>
-                            <div class="mt-20">
-                                <label class="control-label">
-                                        <strong>登陆邮箱:</strong>
-                                     </label>
-                                <div class="fc-blue">
+                            <md-grid-list cols="3" rowHeight="40px">
+                                <md-grid-tile><strong>手机号码:</strong></md-grid-tile>
+                                <md-grid-tile class="fc-purple">{{advert.phone}}</md-grid-tile>
+                                <md-grid-tile><button md-raised-button color="primary" (click)="statu='changePhone'" [class.active]="statu=='changePhone'">修改手机</button></md-grid-tile>
+                            </md-grid-list>
+                            <md-grid-list cols="3" rowHeight="40px">
+                                <md-grid-tile><strong>登陆邮箱:</strong></md-grid-tile>
+                                <md-grid-tile class="fc-purple">
                                     <!-- {{advert.email||advert.phone}} -->
-                                </div>
-                                <div>
-                                    <button type="btn" class="btn btn-info">设置邮箱</button>
-                                </div>
-                            </div>
+                                </md-grid-tile>
+                                <md-grid-tile><button md-raised-button color="primary" (click)="statu='setEamil'" [class.active]="statu=='setEamil'">设置邮箱</button></md-grid-tile>
+                            </md-grid-list>
                         </div>
                         <!--您的安全服务-->
                         <div class="form-group">
                             <h4 class="title">您的安全服务</h4>
-                            <div class="row mt-20">
-                                <label class="control-label">
-                                         <strong>登陆密码</strong>
-                                    </label>
-                                <div class="fc-blue">
+                            <md-grid-list cols="3" rowHeight="60px">
+                                <md-grid-tile><strong>登陆密码</strong></md-grid-tile>
+                                <md-grid-tile class="fc-purple">
                                     安全性高的密码可以使帐号更安全。建议您定期更换密码，且设置一个包含数字和字母，并长度超过6位以上的密码。
-                                </div>
-                                <div>
-                                    <button type="btn" class="btn btn-info">修改</button>
-                                </div>
-                            </div>
-                            <div class="mt-20">
-                                <label class="control-label">
-                                        <strong>登陆邮箱</strong>
-                                     </label>
-                                <div class="fc-blue">
+                                </md-grid-tile>
+                                <md-grid-tile><button md-raised-button color="primary" (click)="statu='changePass'" [class.active]="statu=='changePass'">修改</button></md-grid-tile>
+                            </md-grid-list>
+                            <md-grid-list cols="3" rowHeight="40px">
+                                <md-grid-tile><strong>登陆邮箱</strong></md-grid-tile>
+                                <md-grid-tile class="fc-purple">
                                     绑定邮箱后，您即可享受丰富的邮箱服务，如邮箱登录、邮箱找回密码等。
-                                </div>
-                                <div>
-                                    <button type="btn" class="btn btn-info">绑定</button>
-                                </div>
-                            </div>
+                                </md-grid-tile>
+                                <md-grid-tile>
+                                    <button md-raised-button color="primary">
+                                            <md-dialog-content>绑定</md-dialog-content></button>
+                                </md-grid-tile>
+                            </md-grid-list>
                         </div>
-
-
                     </div>
                 </div>
+                <md-grid-list cols="1" rowHeight="60px" *ngIf="statu=='changePhone'" class="topLine">
+                    <md-grid-tile>
+                        <h3 class="titles">修改号码</h3>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <div class="sig-item">
+                            <label class="label-con">登录密码</label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请输入登录密码" [(ngModel)]="user.password">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <div class="sig-item">
+                            <label class="label-con">新手机号码</label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请输入新手机号码" [(ngModel)]="user.phone">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <div class="sig-item">
+                            <label class="label-con">验证码</label>
+                            <md-input-container class="example-full-width authCode">
+                                <input mdInput placeholder="请输入验证码" [(ngModel)]="authCode">
+                            </md-input-container>
+                            <button (click)="sendAuthCode()" md-raised-button color="primary">{{codeTime==0?'发送验证码':codeTime}}</button>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile class="btn">
+                        <button md-raised-button class="cancel" (click)="statu=' '">取消</button>
+                        <button (click)="changePhone()" md-raised-button color="primary">确认</button>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list cols="1" rowHeight="60px" *ngIf="statu=='setEamil'" class="topLine">
+                    <md-grid-tile>
+                        <h3 class="titles">修改邮箱</h3>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <div class="sig-item">
+                            <label class="label-con">登录密码</label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请输入登录密码" [(ngModel)]="user.password">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <div class="sig-item">
+                            <label class="label-con">新邮箱</label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请输入新邮箱" [(ngModel)]="user.phone">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile class="btn">
+                        <button md-raised-button class="cancel" (click)="statu=' '">取消</button>
+                        <button (click)="setEamil()" md-raised-button color="primary">确认</button>
+                    </md-grid-tile>
+                </md-grid-list>
+                <md-grid-list cols="1" rowHeight="60px" *ngIf="statu=='changePass'" class="topLine">
+                    <md-grid-tile>
+                        <h3 class="titles">修改密码</h3>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <div class="sig-item">
+                            <label class="label-con">原始密码</label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请输入登录密码" [(ngModel)]="user.password">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <div class="sig-item">
+                            <label class="label-con">新密码</label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请设置新密码" [(ngModel)]="user.phone">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile>
+                        <div class="sig-item">
+                            <label class="label-con">确认新密码</label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="请输入确认密码" [(ngModel)]="user.rePassword">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile class="btn">
+                        <button md-raised-button class="cancel" (click)="statu=' '">取消</button>
+                        <button (click)="changePass()" md-raised-button color="primary">确认</button>
+                    </md-grid-tile>
+                </md-grid-list>
             </md-tab>
         </md-tab-group>
     </section>

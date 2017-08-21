@@ -18,7 +18,7 @@ import { HashComponent } from './com/hash/hash.component';
 import { AdvertPublishTaskPageComponent } from './pages/advert/advert-publish-task-page/advert-publish-task-page.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { AdvertAccountPageComponent, DialogOverviewExampleDialog } from './pages/advert/advert-account-page/advert-account-page.component';
-
+import { MoneyPipe } from './pipes/money.pipe';
 // import {Dat} from '@angular/common';
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { AdvertAccountPageComponent, DialogOverviewExampleDialog } from './pages
     HashComponent,
     AdvertPublishTaskPageComponent,
     AdvertAccountPageComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    MoneyPipe
   ],
   imports: [
     BrowserModule,
@@ -56,7 +57,7 @@ import { AdvertAccountPageComponent, DialogOverviewExampleDialog } from './pages
     MdDatepickerModule
 
   ],
-  providers: [ConfigService,],
+  providers: [ConfigService, MoneyPipe],
   bootstrap: [AppComponent, DialogOverviewExampleDialog]
 })
 export class AppModule { }
