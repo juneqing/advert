@@ -3,16 +3,25 @@ export namespace Types {
         _id?: string;
         phone: string;
         password: string;
+        rePassword:string;
         nickname?: string;
         truename?:string;
         CertificateNum?:string;
+        email?:string;
+        adress?:string;
         createDt?: Date;
+        companyname?:string;
+        companynum?:string;
+        headname?:string;
+        headphone?:string;
+        heademail?:string;
         /**
          * 账户余额
          */
         money?: number;
         /**账户历史充值的总额 */
         historyMoney?: number;
+
     }
     export interface IUser {
         _id?: string;

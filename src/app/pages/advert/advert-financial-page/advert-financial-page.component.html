@@ -1,0 +1,84 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content togglable-tabs">
+        <!--选项-->
+        <md-tab-group [selectedIndex]='step' (selectChange)="step=$event.index">
+            <!--财务信息  -->
+            <md-tab label="财务信息">
+                <div class="tab-pane">
+                    <div class="form-horizontal">
+                        <!-- 财务状况 -->
+                        <div class="form-group">
+                            <h4 class="title">财务状况</h4>
+                            <md-grid-list cols="2" rowHeight="200px">
+                                <md-grid-tile>
+                                    <div class="charts-financial-status">
+                                        <p class="topic">现金账户余额／元</p>
+                                        <strong class="price">0</strong>
+                                        <p class="today">今日支出 0元</p>
+                                        <i class="fa fa-credit-card-alt icon" aria-hidden="true">&nbsp;</i>
+                                    </div>
+                                </md-grid-tile>
+                                <md-grid-tile>
+                                    <div class="charts-financial-status charts-financial-status-2">
+                                        <p class="topic">冻结资金／元</p>
+                                        <strong class="price"> 0</strong>
+                                        <p class="today">&nbsp;</p>
+                                        <i class="fa fa-lock icon" aria-hidden="true">&nbsp;</i>
+                                    </div>
+                                </md-grid-tile>
+                            </md-grid-list>
+                        </div>
+                        <!-- 转账充值 -->
+                        <div class="form-group borline">
+                            <h4 class="title">转账充值</h4>
+                            <md-grid-list cols="2" rowHeight="300px">
+                                <md-grid-tile class="widthstyle">
+                                    <img src="../../../../assets/apliy.jpg" alt="">
+                                </md-grid-tile>
+                                <md-grid-tile>
+                                    <div class="inner">
+                                        <div class="important" style="margin-left:25px;">
+                                            <p>对公账户:银行卡</p>
+                                            <p>户名：武汉铭禄科技有限公司</p>
+                                            <p>开户行：中国工商银行徐家棚支行</p>
+                                            <p>卡号:3202 0061 0920 0165 553</p>
+                                            <p style="margin-top:30px;">公司客服电话：181 7148 2725 </p>
+                                            <div id="marked">
+                                                <p class="doc-tips" style="color:red; font-size:20px;">充值金额不能少于2000，并且为100的倍数</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </md-grid-tile>
+                            </md-grid-list>
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            <!-- 财务记录-->
+            <md-tab label="财务记录">
+                <div class="tab-pane">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <h4 class="title">您的基础信息</h4>
+                            <md-grid-list cols="3" rowHeight="40px">
+                                <md-grid-tile><strong>手机号码:</strong></md-grid-tile>
+                                <md-grid-tile class="fc-purple"></md-grid-tile>
+                                <md-grid-tile><button md-raised-button color="primary" (click)="statu='changePhone'">修改手机</button></md-grid-tile>
+                            </md-grid-list>
+                            <md-grid-list cols="3" rowHeight="40px">
+                                <md-grid-tile><strong>登陆邮箱:</strong></md-grid-tile>
+                                <md-grid-tile class="fc-purple">
+                                    <!-- {{advert.email||advert.phone}} -->
+                                </md-grid-tile>
+                                <md-grid-tile><button md-raised-button color="primary" (click)="statu='setEamil'">设置邮箱</button></md-grid-tile>
+                            </md-grid-list>
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+        </md-tab-group>
+    </section>
+</div>

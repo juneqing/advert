@@ -12,6 +12,13 @@ import { MdDialog } from '@angular/material';
 export class AdvertAccountPageComponent implements OnInit {
   warnTruename:boolean=false;
   warnCertificateNum:boolean=false;
+  warnEmail:boolean=false;
+  warnAdress:boolean=false;
+  warnCompanyname:boolean=false;
+  warnCompanynum:boolean=false;
+  warnHeadname:boolean=false;
+  warnHeadphone:boolean=false;
+  warnHeadEmail:boolean=false;
   step = 0;
   statu = " ";
   status="IDcard";
@@ -58,6 +65,27 @@ export class AdvertAccountPageComponent implements OnInit {
   }
   checkCertificateNum(){
     this.warnCertificateNum=!this.advert.CertificateNum;
+}
+checkEmail(){
+  this.warnEmail=!this.advert.email;
+}
+checkAdress(){
+  this.warnAdress=!this.advert.adress;
+}
+checkCompanyname(){
+  this.warnCompanyname=!this.advert.companyname;
+}
+checkCompanynum(){
+  this.warnCompanynum=!this.advert.companynum;
+}
+checkHeadname(){
+  this.warnHeadname=!this.advert.headname;
+}
+checkHeadphone(){
+  this.warnHeadphone=!this.advert.headphone;
+}
+checkHeadEmail(){
+this.warnHeadEmail=!this.advert.heademail;
 }
 }
 

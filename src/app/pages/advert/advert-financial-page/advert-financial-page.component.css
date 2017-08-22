@@ -1,0 +1,74 @@
+.content {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 0 #d3d5d6;
+    background: #fff;
+    border: 1px solid gray;
+    min-height: 510px;
+}
+
+.title {
+    font-size: 14px;
+    color: #76838f;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.tab-pane {
+    padding: 30px 30px;
+}
+
+.charts-financial-status {
+    position: relative;
+    float: left;
+    width: 434px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 3px;
+    background: #673AB7;
+}
+
+.charts-financial-status .topic {
+    margin: 0;
+    font-size: 14px;
+    color: gray;
+}
+
+.charts-financial-status .price {
+    font-size: 32px;
+    color: #fff;
+}
+
+.charts-financial-status .today {
+    margin: 0;
+    color: #fff;
+}
+
+.charts-financial-status .icon {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 32px;
+    background-position: -71px 0;
+    color: #ffffff;
+}
+
+.charts-financial-status-2 {
+    margin-left: 50px;
+    background: #f7696b;
+}
+
+.charts-financial-status-2 .topic {
+    color: gray;
+}
+
+.borline {
+    border-top: 1px dashed gray;
+    padding-top: 40px;
+}
+
+.widthstyle img {
+    width: 60%;
+}

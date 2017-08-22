@@ -19,6 +19,7 @@ import { AdvertPublishTaskPageComponent } from './pages/advert/advert-publish-ta
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { AdvertAccountPageComponent, DialogOverviewExampleDialog } from './pages/advert/advert-account-page/advert-account-page.component';
 import { MoneyPipe } from './pipes/money.pipe';
+import { AdvertFinancialPageComponent } from './pages/advert/advert-financial-page/advert-financial-page.component';
 // import {Dat} from '@angular/common';
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MoneyPipe } from './pipes/money.pipe';
     AdvertPublishTaskPageComponent,
     AdvertAccountPageComponent,
     DialogOverviewExampleDialog,
-    MoneyPipe
+    MoneyPipe,
+    AdvertFinancialPageComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { MoneyPipe } from './pipes/money.pipe';
         children: [
           { path: '', component: AdvertHomePageComponent, data: { label: '首页' }, children: [] },
           { path: 'publish-task', component: AdvertPublishTaskPageComponent, data: { label: '发布广告' }, children: [] },
-          { path: 'advert-account', component: AdvertAccountPageComponent, data: { label: '我的账户' }, children: [] }
+          { path: 'advert-account', component: AdvertAccountPageComponent, data: { label: '我的账户' }, children: [] },
+          {path:'advert-financial',component:AdvertFinancialPageComponent,data:{label:'财务信息'},children: [] }
         ]
       }
     ]),
