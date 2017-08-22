@@ -46,7 +46,6 @@
 }
 
 .tab-content {
-    /* position: relative; */
     padding: 0 20px;
     box-shadow: 0 1px 1px 0 #d3d5d6;
 }
@@ -149,4 +148,8 @@
 
 tbody tr td {
     text-align: center;
+}
+
+.table-hover:hover {
+    background: #8560C5;
 }

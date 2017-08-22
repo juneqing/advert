@@ -30,7 +30,7 @@
                             <li><i class="legend l-green"></i>投放中：0个广告</li>
                             <li><i class="legend l-gray"></i>已结束：0个广告</li>
                         </ul>
-                        <table class="table table-hover">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th width="200">广告名称</th>
@@ -43,7 +43,7 @@
                                     <th width="200">操&nbsp;&nbsp;&nbsp;作</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-hover">
                                 <tr *ngFor="let task of tasks;let i = index">
                                     <td>{{task.title}}</td>
                                     <td>社交分享广告</td>
@@ -52,7 +52,6 @@
                                     <td mdTooltip="{{task.totalMoney|money}}">
                                         <md-progress-bar [color]="task.totalMoney/task.fee*100 >=20?'primary':'warn'" [value]="task.totalMoney/task.fee*100"></md-progress-bar>
                                     </td>
-                                    <!-- <td>{{task.totalMoney}}</td> -->
                                     <td>{{task.fee}}</td>
                                     <td>草稿</td>
                                     <td class="text-left">

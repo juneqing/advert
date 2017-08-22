@@ -10,13 +10,11 @@ import { MdDialog } from '@angular/material';
   styleUrls: ['./advert-account-page.component.css']
 })
 export class AdvertAccountPageComponent implements OnInit {
-  user = {
-    phone: '',
-    password: '',
-    rePassword: ''
-  };
+  warnTruename:boolean=false;
+  warnCertificateNum:boolean=false;
   step = 0;
   statu = " ";
+  status="IDcard";
   //用户输入的验证码
   code;
   authCode = '';
@@ -43,9 +41,9 @@ export class AdvertAccountPageComponent implements OnInit {
 
     if (this.codeTime > 0) {
     } else {
-      if (/1[0-9]\d{9}/g.test(this.user.phone)) {
+      if (/1[0-9]\d{9}/g.test(this.advert.phone)) {
         this.loopOneMini();
-        this.code = await this.config.Post('/advert.authCode.go', { phone: this.user.phone });
+        this.code = await this.config.Post('/advert.authCode.go', { phone: this.advert.phone });
       } else {
         alert('手机号不正确');
       }
@@ -54,6 +52,13 @@ export class AdvertAccountPageComponent implements OnInit {
   async changePhone() { }
   async changePass() { }
   async setEamil() { }
+  // 判断是否真实姓名为空
+  checkTruename(){
+        this.warnTruename=!this.advert.truename;
+  }
+  checkCertificateNum(){
+    this.warnCertificateNum=!this.advert.CertificateNum;
+}
 }
 
 
@@ -65,5 +70,6 @@ export class AdvertAccountPageComponent implements OnInit {
 export class DialogOverviewExampleDialog implements OnInit {
   ngOnInit() {
   }
+
 
 }

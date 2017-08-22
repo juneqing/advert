@@ -4,6 +4,8 @@ export namespace Types {
         phone: string;
         password: string;
         nickname?: string;
+        truename?:string;
+        CertificateNum?:string;
         createDt?: Date;
         /**
          * 账户余额

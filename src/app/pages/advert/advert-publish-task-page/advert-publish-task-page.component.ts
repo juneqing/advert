@@ -48,7 +48,6 @@ export class AdvertPublishTaskPageComponent implements OnInit {
     this.step = 3;
   }
   selectTaskTag(taskTag: Types.ITaskTag) {
-
     this.selectedTaskTag = taskTag;
     console.log(taskTag);
   }
@@ -58,7 +57,7 @@ export class AdvertPublishTaskPageComponent implements OnInit {
   async  getTaskTagList() {
     this.taskTags = await this.config.Get('/advert.taskTags.go');
 
-    this.selectedTaskTag = this.taskTags[0];
+    this.selectedTaskTag = this.taskTags[0] || {name:'默认',_id:'',sort:0};
   }
 
   safeBackground(url) {
