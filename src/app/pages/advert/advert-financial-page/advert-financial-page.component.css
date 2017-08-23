@@ -72,3 +72,15 @@
 .widthstyle img {
     width: 60%;
 }
+
+tbody tr td {
+    text-align: center;
+}
+
+.table-hover:hover {
+    background: #8560C5;
+}
+
+.table {
+    width: 100%;
+}

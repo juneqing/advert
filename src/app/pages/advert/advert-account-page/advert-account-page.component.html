@@ -6,7 +6,7 @@
         <md-tab-group [selectedIndex]='step' (selectChange)="step=$event.index">
             <!--基本信息  -->
             <md-tab label="基本信息">
-                <div class="form-horizontal">
+                <div class="form-horizontal" *ngIf=" !(statu=='authPersonal' || statu=='authCompany')">
                     <div class="form-group authentication">
                         <h4>认证</h4>
                         <md-grid-list cols="2" rowHeight="100px">
@@ -133,7 +133,7 @@
                             <a class="astyle">狠享赚平台平台广告投放免责协议内容</a>
                         </div>
                         <div class="form-group btnGroup">
-                            <button md-raised-button color="primary">上一步</button>
+                            <button md-raised-button color="primary" (click)="statu='step'">上一步</button>
                             <button md-raised-button color="primary">提交审核</button>
                         </div>
                         <div class="form-group">
@@ -250,7 +250,7 @@
                             <a class="astyle">狠享赚平台平台广告投放免责协议内容</a>
                         </div>
                         <div class="form-group btnGroup">
-                            <button md-raised-button color="primary">上一步</button>
+                            <button md-raised-button color="primary" (click)="statu='step'">上一步</button>
                             <button md-raised-button color="primary">提交审核</button>
                         </div>
                         <div class="form-group">

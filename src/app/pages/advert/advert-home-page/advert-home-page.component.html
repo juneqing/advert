@@ -39,12 +39,12 @@
                                     <th>点击单价（元）</th>
                                     <th>广告余额（元）</th>
                                     <th>广告资费（元）</th>
-                                    <th>广告状态</th>
+                                    <th>广告分类</th>
                                     <th width="200">操&nbsp;&nbsp;&nbsp;作</th>
                                 </tr>
                             </thead>
-                            <tbody class="table-hover">
-                                <tr *ngFor="let task of tasks;let i = index">
+                            <tbody>
+                                <tr *ngFor="let task of tasks;let i = index" class="table-hover">
                                     <td>{{task.title}}</td>
                                     <td>社交分享广告</td>
                                     <td>{{task.createDt | date:'yyyy-MM-dd HH:mm:ss' }}<br>{{task.startDt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
@@ -53,7 +53,7 @@
                                         <md-progress-bar [color]="task.totalMoney/task.fee*100 >=20?'primary':'warn'" [value]="task.totalMoney/task.fee*100"></md-progress-bar>
                                     </td>
                                     <td>{{task.fee}}</td>
-                                    <td>草稿</td>
+                                    <td>{{task.taskTag.name}}</td>
                                     <td class="text-left">
                                         <i class="fa fa-eye " (click)="selectedTaskTag=task;showTaskOneDayData(task)" style="cursor: pointer;color:blueviolet;"></i>&nbsp;&nbsp;
                                         <md-slide-toggle color="primary" [checked]="task.active" [disabled]="task.totalMoney/task.fee*100 <=20" (change)="toggleTaskActive(task)" [style.color]="task.active?'green':'red'">{{task.active?'启用':'禁用'}}</md-slide-toggle>&nbsp;&nbsp;

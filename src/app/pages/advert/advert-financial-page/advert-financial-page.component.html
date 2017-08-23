@@ -40,7 +40,7 @@
                                 <md-grid-tile>
                                     <div class="inner">
                                         <div class="important" style="margin-left:25px;">
-                                            <p>对公账户:银行卡</p>
+                                            <p>对公账户:工商银行卡</p>
                                             <p>户名：武汉铭禄科技有限公司</p>
                                             <p>开户行：中国工商银行徐家棚支行</p>
                                             <p>卡号:3202 0061 0920 0165 553</p>
@@ -48,7 +48,6 @@
                                             <div id="marked">
                                                 <p class="doc-tips" style="color:red; font-size:20px;">充值金额不能少于2000，并且为100的倍数</p>
                                             </div>
-
                                         </div>
                                     </div>
                                 </md-grid-tile>
@@ -62,19 +61,39 @@
                 <div class="tab-pane">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <h4 class="title">您的基础信息</h4>
-                            <md-grid-list cols="3" rowHeight="40px">
-                                <md-grid-tile><strong>手机号码:</strong></md-grid-tile>
-                                <md-grid-tile class="fc-purple"></md-grid-tile>
-                                <md-grid-tile><button md-raised-button color="primary" (click)="statu='changePhone'">修改手机</button></md-grid-tile>
-                            </md-grid-list>
-                            <md-grid-list cols="3" rowHeight="40px">
-                                <md-grid-tile><strong>登陆邮箱:</strong></md-grid-tile>
-                                <md-grid-tile class="fc-purple">
-                                    <!-- {{advert.email||advert.phone}} -->
-                                </md-grid-tile>
-                                <md-grid-tile><button md-raised-button color="primary" (click)="statu='setEamil'">设置邮箱</button></md-grid-tile>
-                            </md-grid-list>
+                            <h4 class="title">您的财务记录</h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="200">充值日期</th>
+                                        <th>名称|备注</th>
+                                        <th>充值金额(元)</th>
+                                        <th>支出金额(元)</th>
+                                        <th>余额(元)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                                <!-- <tbody>
+                                    <tr *ngFor="let task of tasks;let i = index" class="table-hover">
+                                        <td>{{task.title}}</td>
+                                        <td>社交分享广告</td>
+                                        <td>{{task.createDt | date:'yyyy-MM-dd HH:mm:ss' }}<br>{{task.startDt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                                        <td>{{task.shareMoney | money}}</td>
+                                        <td mdTooltip="{{task.totalMoney|money}}">
+                                            <md-progress-bar [color]="task.totalMoney/task.fee*100 >=20?'primary':'warn'" [value]="task.totalMoney/task.fee*100"></md-progress-bar>
+                                        </td>
+                                        <td>{{task.fee}}</td>
+                                        <td>{{task.taskTag.name}}</td>
+                                        <td class="text-left">
+                                            <i class="fa fa-eye " (click)="selectedTaskTag=task;showTaskOneDayData(task)" style="cursor: pointer;color:blueviolet;"></i>&nbsp;&nbsp;
+                                            <md-slide-toggle color="primary" [checked]="task.active" [disabled]="task.totalMoney/task.fee*100 <=20" (change)="toggleTaskActive(task)" [style.color]="task.active?'green':'red'">{{task.active?'启用':'禁用'}}</md-slide-toggle>&nbsp;&nbsp;
+                                            <i (click)="editTask(task)" class="fa fa-pencil-square-o" aria-hidden="true" style="color:blueviolet;cursor: pointer;"></i>
+                                        </td>
+                                    </tr>
+                                </tbody> -->
+                            </table>
                         </div>
                     </div>
                 </div>

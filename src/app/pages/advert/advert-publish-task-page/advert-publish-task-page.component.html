@@ -79,7 +79,7 @@
                         <div class="preview-box">
                             <strong class="topic">广告图片预览图</strong>
                             <div class="imgView">
-                                <img [src]="newTask.bannerUrl" alt="广告图片预览图" *ngIf="newTask.bannerUrl" class="img-responsive" width="100%" height="auto" style="overflow: hidden;">
+                                <img [src]="newTask.bannerImg" alt="广告图片预览图" *ngIf="newTask.bannerImg" class="img-responsive" width="100%" height="auto" style="overflow: hidden;">
                             </div>
                         </div>
                     </md-grid-tile>
@@ -105,7 +105,7 @@
                                 <span class="upload-tips" style="display:none">请点击选择图片...</span>
                                 <input type="file" name="file" class="upload-txt" id="dbfile" placeholder="最佳分辨率大小360*200" (change)="uploadTaskBannerUrl(taskBannerUrlInput.files[0])" #taskBannerUrlInput>
                                 <md-input-container class="example-full-width">
-                                    <input mdInput placeholder="自定义图片地址或者上传图片" [(ngModel)]="newTask.bannerUrl">
+                                    <input mdInput placeholder="自定义图片地址或者上传图片" [(ngModel)]="newTask.bannerImg">
                                 </md-input-container>
                                 <label class="upload-icon" for="dbfile" mdTooltip="请上传25k以下，分辨率640*280以下的图片">
                                     <i class="fa fa-picture-o"></i>

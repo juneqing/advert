@@ -66,8 +66,8 @@ export namespace Types {
         active: boolean;
         websiteUrl: string;
         imageUrl?: string;
-        bannerUrl?: string;
-        taskTag?: string | ITaskTag;
+        bannerImg?: string;
+        taskTag?: ITaskTag | string;
     }
     export interface IGetMoneyRequest {
         _id?: string;

@@ -25,7 +25,7 @@ export class AdvertPublishTaskPageComponent implements OnInit {
     totalMoney: 0,
     active: false,
     websiteUrl: '',
-    bannerUrl: '',
+    bannerImg: '',
     taskTag: '',
   };
   isNew: boolean = true;
@@ -44,7 +44,8 @@ export class AdvertPublishTaskPageComponent implements OnInit {
   ngOnInit() {
   }
   async getTaskById(_id: string) {
-    this.newTask = await this.config.Get('/advert.task.go?_id=' + _id)
+    this.newTask = await this.config.Get('/advert.task.go?_id=' + _id);
+    this.selectedTaskTag = await this.config.Get('/admin.rest.go?model=taskTagModel&_id='+this.newTask.taskTag);
     this.step = 3;
   }
   selectTaskTag(taskTag: Types.ITaskTag) {
@@ -68,28 +69,25 @@ export class AdvertPublishTaskPageComponent implements OnInit {
   // 上传图片
   async uploadTaskImageUrl(file: File) {
     let base64 = await this.config.convertFileToBase64(file);//图片转换成base64位
-    let compressData = await this.config.compressBase64(base64);//压缩图片
+    let compressData = await this.config.compressBase64(base64,160000);//压缩图片
     this.newTask.imageUrl = await this.config.PostLocal(`/api.uploadBase64.go`, { base64: compressData });
   }
   // 上传广告banner图
   async uploadTaskBannerUrl(file: File) {
     let base64 = await this.config.convertFileToBase64(file);
     // let compressData = await this.config.compressBase64(base64);
-    this.newTask.bannerUrl = await this.config.PostLocal(`/api.uploadBase64.go`, { base64 });
+    this.newTask.bannerImg = await this.config.PostLocal(`/api.uploadBase64.go`, { base64 });
   }
   //任务修改
   async saveNewItem() {
     if (this.isNew) {
-      this.newTask.taskTag = this.selectedTaskTag._id;
+      this.newTask.taskTag =<any>this.selectedTaskTag._id;
       this.newTask.publisher = this.config.advert._id;
       let result = await this.config.Post('/advert.publishTask.go', this.newTask);
     } else {
-      await this.config.Put('/advert.editTask.go?_id=' + this.newTask._id, this.newTask);
+      await this.config.Put('/admin.rest.go?model=taskModel&_id=' + this.newTask._id, this.newTask);
     }
     this.config.router.navigateByUrl('/advert');
 
   }
-
-
-
 }
