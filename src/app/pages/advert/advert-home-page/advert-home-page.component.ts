@@ -30,9 +30,13 @@ export class AdvertHomePageComponent implements OnInit {
   oneMonthLables = new Array(31).fill('').map((value, index) => index);
   constructor(public config: ConfigService) {
     this.advert = this.config.advert;
+    this.syncAdvert();
     this.taskList();
   }
 
+  async syncAdvert(){
+   this.advert =  await this.config.Get('/advert.info.go?_id='+this.config.advert._id)
+  }
   ngOnInit() {
   }
   async taskList() {

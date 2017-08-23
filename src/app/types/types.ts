@@ -15,11 +15,9 @@ export namespace Types {
         headname?:string;
         headphone?:string;
         heademail?:string;
-        /**
-         * 账户余额
-         */
+        // 账户余额
         money?: number;
-        /**账户历史充值的总额 */
+        //账户历史充值的总额
         historyMoney?: number;
 
     }

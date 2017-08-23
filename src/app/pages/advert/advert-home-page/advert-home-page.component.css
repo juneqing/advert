@@ -151,5 +151,5 @@ tbody tr td {
 }
 
 .table-hover:hover {
-    background: #8560C5;
+    background: rgba(195, 193, 193, 0.87);
 }

@@ -15,7 +15,7 @@ export class AdvertPublishTaskPageComponent implements OnInit {
   selectedTaskTag: Types.ITaskTag = { _id: '', name: '', sort: 0 };
   step = 0;
   newTask: Types.ITask = {
-    _id: '',
+    
     title: '',
     createDt: new Date(),
     fee: 0,
@@ -69,7 +69,7 @@ export class AdvertPublishTaskPageComponent implements OnInit {
   // 上传图片
   async uploadTaskImageUrl(file: File) {
     let base64 = await this.config.convertFileToBase64(file);//图片转换成base64位
-    let compressData = await this.config.compressBase64(base64,160000);//压缩图片
+    let compressData = await this.config.compressBase64(base64,640000);//压缩图片
     this.newTask.imageUrl = await this.config.PostLocal(`/api.uploadBase64.go`, { base64: compressData });
   }
   // 上传广告banner图

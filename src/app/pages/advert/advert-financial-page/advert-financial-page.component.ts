@@ -11,7 +11,10 @@ import { MdDialog } from '@angular/material';
 })
 export class AdvertFinancialPageComponent implements OnInit {
   step = 0;
-  constructor(public config: ConfigService) { }
+  advert: Types.Advert;
+  constructor(public config: ConfigService) {
+    this.advert=this.config.advert;
+   }
 
   ngOnInit() {
   }

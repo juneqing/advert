@@ -49,7 +49,7 @@ import { AdvertFinancialPageComponent } from './pages/advert/advert-financial-pa
           { path: '', component: AdvertHomePageComponent, data: { label: '首页' }, children: [] },
           { path: 'publish-task', component: AdvertPublishTaskPageComponent, data: { label: '发布广告' }, children: [] },
           { path: 'advert-account', component: AdvertAccountPageComponent, data: { label: '我的账户' }, children: [] },
-          {path:'advert-financial',component:AdvertFinancialPageComponent,data:{label:'财务信息'},children: [] }
+          { path: 'advert-financial', component: AdvertFinancialPageComponent, data: {label:'财务信息'}, children: [] }
         ]
       }
     ]),

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,HostListener} from '@angular/core';
 import { ConfigService } from '../../services/config.service';
 @Component({
   selector: 'app-login-page',
@@ -22,30 +22,31 @@ export class LoginPageComponent implements OnInit {
   authCode = '';
   codeTime = 0;
   constructor(public config: ConfigService) {
-    this.checkAdminLogin();
+    // this.checkAdminLogin();
     this.checkAdvertLogin();
   }
+@HostListener('keyup',['$event']) enter(event:KeyboardEvent){
+  if(event.keyCode==13){
+    this.login()
+  }
+}
 
   async login() {
-    if (this.user.phone == 'moon' && this.user.password == 'moon') {
-      this.config.admin = { username: 'moon', password: 'moon' };
-      this.config.router.navigateByUrl('/admin')
-    } else {
+ 
       let result = await this.config.Post('/advert.login.go', this.user);
       if (result) {
         this.config.advert = result;
         this.config.router.navigateByUrl('/advert')
-      } else {
-        alert('用户名或密码不存在');
-      }
-    }
+      } 
+    
   }
 
-  checkAdminLogin() {
-    if (this.config.admin) {
-      this.config.router.navigateByUrl('/admin');
-    }
-  }
+  // checkAdminLogin() {
+  //   if (this.config.admin) {
+  //     this.config.router.navigateByUrl('/admin');
+  //   }
+  // }
+
   checkAdvertLogin() {
     if (this.config.advert) {
       this.config.router.navigateByUrl('/advert')
@@ -60,8 +61,9 @@ export class LoginPageComponent implements OnInit {
       this.codeTime > 0 ? this.codeTime-- : clearInterval(timmer);
     }, 1000);
   }
-  async sendAuthCode() {
 
+  // 注册发送验证码
+  async sendAuthCode() {
     if (this.codeTime > 0) {
     } else {
       if (/1[0-9]\d{9}/g.test(this.user.phone)) {
@@ -75,6 +77,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
 
   }
+  // 判断登陆密码
   async register() {
     if (this.user.password != this.user.rePassword) {
       alert('两次输入的密码不一致');
