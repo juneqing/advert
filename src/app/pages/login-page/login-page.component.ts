@@ -1,5 +1,7 @@
 import { Component, OnInit ,HostListener} from '@angular/core';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { ConfigService } from '../../services/config.service';
+import { Types } from '../../types';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -7,6 +9,10 @@ import { ConfigService } from '../../services/config.service';
 })
 
 export class LoginPageComponent implements OnInit {
+  inputRandomCode:string='';
+  advert: Types.Advert;
+  warnPhone:boolean=false;
+  warnImgAuthCode:boolean=false;
   checked = false;
   indeterminate = false;
   align = 'start';
@@ -17,6 +23,7 @@ export class LoginPageComponent implements OnInit {
     password: '',
     rePassword: ''
   };
+  step = 0;
   code;
   //用户输入的验证码
   authCode = '';
@@ -32,7 +39,6 @@ export class LoginPageComponent implements OnInit {
 }
 
   async login() {
- 
       let result = await this.config.Post('/advert.login.go', this.user);
       if (result) {
         this.config.advert = result;
@@ -89,5 +95,18 @@ export class LoginPageComponent implements OnInit {
       }
     }
 
+  }
+
+  checkPhone(){
+    this.warnPhone=!this.user.phone;
+  }
+  checkImgAuthCode(code:string){
+    console.log(code,this.randomCode);
+    this.warnImgAuthCode= !(code==this.randomCode);
+  }
+  randomCode;
+
+  randomACode(){
+    this.randomCode= Math.random().toString().substring(2,6)
   }
 }

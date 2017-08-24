@@ -146,3 +146,50 @@ a:hover {
 .example-margin {
     margin: 0 10px;
 }
+
+.forgotPass {
+    min-height: 400px;
+    position: relative;
+    top: 25px;
+    left: 0;
+}
+
+.inputWidth {
+    width: 50%;
+}
+
+.notice {
+    margin-left: 10px;
+    color: red;
+    width: 20%;
+}
+
+.accountSure {
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.nextBtn {
+    left: 110px;
+    width: 58%;
+}
+
+.ml-15 {
+    margin-left: 15px !important;
+}
+
+.tips {
+    font-size: 14px;
+    color: #d6d6d7;
+}
+
+.marginBtn {
+    margin-left: 160px;
+}
+
+.pasTrue {
+    font-size: 155px;
+    margin-left: 185px;
+    color: #673ab7;
+}

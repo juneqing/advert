@@ -5,7 +5,7 @@
             <!--登陆页面  -->
             <div class="login" *ngIf="state=='login'">
                 <div class="row">
-                    <p class="login-box-msg col-md-12"> 狠享赚广告商后台管理</p>
+                    <p class="login-box-msg"> 狠享赚广告商后台管理</p>
                     <div class="example-form">
                         <div class="example-full-width" cellspacing="0">
                             <p>
@@ -21,11 +21,13 @@
                                 <md-input-container class="example-full-width">
                                     <input mdInput placeholder="请输入密码" [(ngModel)]="user.password" type="password">
                                 </md-input-container>
+                                <a (click)="state='forgotPass';randomACode()" [class.active]="state=='forgotPass'">忘记密码</a>
                             </p>
                         </div>
                         <div class="checkbox icheck">
                             <section class="example-section">
                                 <md-checkbox class="example-margin" color="primary" [(ngModel)]="checked">记住我</md-checkbox>
+
                             </section>
                         </div>
                     </div>
@@ -36,6 +38,97 @@
                         <button (click)="state='register'" md-raised-button color="primary" class="btn btn-info btn-block" [class.active]="state=='register'">没有帐号?立即注册</button>
                     </div>
                 </div>
+            </div>
+            <!-- 忘记密码 -->
+            <div class="forgotPass" *ngIf="state=='forgotPass'">
+                <div class="sig-up">
+                    <span class="form-title col-md-2">修改密码</span>
+                </div>
+                <!-- 修改密码 -->
+                <md-tab-group [selectedIndex]='step' (selectChange)="step=$event.index">
+                    <!-- 账户确认 -->
+                    <md-tab label="账户确认">
+                        <div class="accountSure">
+                            <div class="example-full-width" cellspacing="0">
+                                <p>
+                                    <i class="fa fa-address-book-o" aria-hidden="true"></i>&nbsp;&nbsp;帐号:&nbsp;&nbsp;
+                                    <md-input-container class="inputWidth">
+                                        <input mdInput placeholder="请输入手机/邮箱" [(ngModel)]="user.phone" (blur)="checkPhone()">
+                                    </md-input-container>
+                                    <span class="notice" *ngIf="warnPhone">
+                                        <i class="fa fa-exclamation-circle">&nbsp;手机号码/邮箱不能为空!</i>
+                                    </span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;验证码:&nbsp;&nbsp;
+                                    <md-input-container class="inputWidth">
+                                        <input mdInput placeholder="请输入验证码" (blur)="checkImgAuthCode(inputRandomCode)" [(ngModel)]="inputRandomCode">
+                                    </md-input-container>
+                                    <span (click)="randomACode()">&nbsp;&nbsp;{{randomCode}}</span>
+                                    <span class="notice" *ngIf="warnImgAuthCode&&inputRandomCode==''">
+                                            <i class="fa fa-exclamation-circle">&nbsp;请输入验证码!</i>
+                                    </span>
+                                    <span class="notice" *ngIf="warnImgAuthCode&&inputRandomCode!='' ">
+                                            <i class="fa fa-exclamation-circle">&nbsp;验证码错误!</i>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <button md-raised-button color="primary" (click)="step=step+1" class="nextBtn">下一步</button>
+                    </md-tab>
+                    <!-- 安全验证 -->
+                    <md-tab label="安全验证">
+                        <div class="accountSure">
+                            <div class="example-full-width" cellspacing="0">
+                                <p>为了保护帐号安全，需要验证<span class="type">手机</span><span class="ml-15 fc-purple">{{user.phone}}</span></p>
+                                <p class="tips">点击发送短信按钮，将会发送一条验证码的短信至手机</p>
+                                <p>
+                                    <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;验证码:&nbsp;&nbsp;
+                                    <md-input-container class="inputWidth">
+                                        <input mdInput placeholder="请输入验证码" [(ngModel)]="authCode">
+                                    </md-input-container>
+                                    <button (click)="sendAuthCode()" md-raised-button color="primary" [class.active]="state=='login'">{{codeTime==0?'发送验证码':codeTime}}</button>
+                                </p>
+                                <button md-raised-button color="primary" *ngIf="step!=0" (click)="step=step-1" class="marginBtn">上一步</button>
+                                <button md-raised-button color="primary" (click)="step=step+1">下一步</button>
+                            </div>
+                        </div>
+                    </md-tab>
+                    <!-- 重置密码 -->
+                    <md-tab label="重置密码">
+                        <div class="accountSure">
+                            <div class="example-full-width" cellspacing="0">
+                                <p>
+                                    <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;设置密码:&nbsp;&nbsp;
+                                    <md-input-container class="example-full-width pass">
+                                        <input mdInput placeholder="设置密码,建议字母数字组合" [(ngModel)]="user.password" type="password" autocomplete="off">
+                                    </md-input-container>
+                                </p>
+                                <p>
+                                    <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;确认密码:&nbsp;&nbsp;
+                                    <md-input-container class="example-full-width pass">
+                                        <input mdInput placeholder="确认密码" [(ngModel)]="user.rePassword" type="password" autocomplete="off">
+                                    </md-input-container>
+                                </p>
+                                <button md-raised-button color="primary" *ngIf="step!=0" (click)="step=step-1" class="marginBtn">上一步</button>
+                                <button md-raised-button color="primary" (click)="step=step+1">下一步</button>
+                            </div>
+                        </div>
+                    </md-tab>
+                    <!-- 提交完成 -->
+                    <md-tab label="完成">
+                        <div class="accountSure">
+                            <div class="example-full-width" cellspacing="0">
+                                <p>
+                                    <i class="fa fa-check-square-o pasTrue" aria-hidden="true"></i>
+                                </p>
+                                <button md-raised-button color="primary" (click)="state='login'" class="nextBtn">登录</button>
+                            </div>
+                        </div>
+
+                    </md-tab>
+                </md-tab-group>
+
             </div>
             <!--注册页面  -->
             <div class="register" *ngIf="state=='register'">
