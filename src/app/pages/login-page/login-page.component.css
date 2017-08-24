@@ -158,6 +158,10 @@ a:hover {
     width: 50%;
 }
 
+.inputWidthAuth {
+    width: 39%;
+}
+
 .notice {
     margin-left: 10px;
     color: red;
@@ -170,6 +174,16 @@ a:hover {
     padding-bottom: 20px;
 }
 
+.mobile {
+    font-size: 18px;
+}
+
+.randomCode {
+    font-size: 35px;
+    font-weight: 700;
+    color: #673ab7;
+}
+
 .nextBtn {
     left: 110px;
     width: 58%;
@@ -177,6 +191,7 @@ a:hover {
 
 .ml-15 {
     margin-left: 15px !important;
+    font-size: 20px;
 }
 
 .tips {
