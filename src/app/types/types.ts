@@ -56,7 +56,8 @@ export namespace Types {
         createDt: Date;
         fee: number;
         startDt?: Date;
-
+        url?:string;
+        urlName:string;
         publisher: string | IUser;
         shareMoney: number;
         // 余额

@@ -67,7 +67,7 @@
                         </div>
                     </md-grid-tile>
                     <!--预览图  -->
-                    <md-grid-tile rowspan="4" colspan="2">
+                    <md-grid-tile rowspan="6" colspan="2">
                         <div class="preview-box">
                             <strong class="topic">分享图片预览图</strong>
                             <div class="imgView">
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                     </md-grid-tile>
-                    <md-grid-tile rowspan="4" colspan="2">
+                    <md-grid-tile rowspan="6" colspan="2">
                         <div class="preview-box">
                             <strong class="topic">广告图片预览图</strong>
                             <div class="imgView">
@@ -121,6 +121,23 @@
                             </md-input-container>
                         </div>
                     </md-grid-tile>
+                    <md-grid-tile colspan="4">
+                        <div class="form-group">
+                            <label class="control-label"><strong>推广公众号名称</strong></label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="想要推广的公众号名称" [(ngModel)]="newTask.urlName">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+                    <md-grid-tile colspan="4">
+                        <div class="form-group">
+                            <label class="control-label"><strong>推广公众号地址</strong></label>
+                            <md-input-container class="example-full-width">
+                                <input mdInput placeholder="复制公众号的历史消息链接" [(ngModel)]="newTask.url">
+                            </md-input-container>
+                        </div>
+                    </md-grid-tile>
+
                 </md-grid-list>
                 <p class="fc-red pull-right">预览效果仅供参考，实际效果以APP效果为准。</p>
             </md-tab>
@@ -145,7 +162,7 @@
             </md-tab>
             <!-- 提交 -->
             <md-tab label="确认提交">
-                <md-grid-list cols="3">
+                <md-grid-list cols="2">
                     <md-grid-tile>
                         <div role="tabpanel" class="textLeft">
                             <h3 class="mod-title mod-title-small">广告预览信息</h3>
@@ -173,10 +190,25 @@
                                 <span class="text-right">点击单价：</span>
                                 <label class="fc-blue">{{newTask.shareMoney}}</label>
                             </div>
+                            <div class="mt-20">
+                                <span class="text-right">推广公众号名称：</span>
+                                <label class="fc-blue">{{newTask.urlName}}</label>
+                            </div>
+                            <div class="mt-20">
+                                <span class="text-right">推广公众号网址：</span>
+                                <label class="fc-blue">{{newTask.url}}</label>
+                            </div>
                         </div>
                     </md-grid-tile>
-                    <md-grid-tile>2</md-grid-tile>
-                    <md-grid-tile>3</md-grid-tile>
+                    <md-grid-tile>
+                        <div class="center-box-cr">
+                            <img class="ng-tns-c2-0" alt="" [src]="newTask.bannerImg">
+                            <p class="ng-tns-c2-0">{{newTask.title}}</p>
+                            <span class="time">{{ now |date:"yyyy-MM-dd"}}</span>
+                            <span class="cost"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;{{newTask.shareMoney}}元</span>
+                            <span class="click"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i>&nbsp;0</span>
+                        </div>
+                    </md-grid-tile>
                 </md-grid-list>
 
             </md-tab>

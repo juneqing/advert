@@ -14,8 +14,10 @@ export class AdvertPublishTaskPageComponent implements OnInit {
   taskTags: Types.ITaskTag[] = [];
   selectedTaskTag: Types.ITaskTag = { _id: '', name: '', sort: 0 };
   step = 0;
+  now:Date=new Date()
   newTask: Types.ITask = {
-    
+    url:'',
+    urlName:'',
     title: '',
     createDt: new Date(),
     fee: 0,
