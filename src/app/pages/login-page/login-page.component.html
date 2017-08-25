@@ -26,8 +26,7 @@
                         </div>
                         <div class="checkbox icheck">
                             <section class="example-section">
-                                <md-checkbox class="example-margin" color="primary" [(ngModel)]="checked">记住我</md-checkbox>
-
+                                <md-checkbox class="example-margin" color="primary" [(ngModel)]="remeberMe" (change)="clearSession()">记住我</md-checkbox>
                             </section>
                         </div>
                     </div>
@@ -43,6 +42,7 @@
             <div class="forgotPass" *ngIf="state=='forgotPass'">
                 <div class="sig-up">
                     <span class="form-title col-md-2">修改密码</span>
+                    <a (click)="state='login'">取消修改</a>
                 </div>
                 <!-- 修改密码 -->
                 <md-tab-group [selectedIndex]='step' (selectChange)="step=$event.index">
@@ -59,6 +59,10 @@
                                         <i class="fa fa-exclamation-circle">&nbsp;手机号码/邮箱不能为空!</i>
                                     </span>
                                 </p>
+                                <!-- 
+                                        1.点击刷新验证码:randomACode()
+                                        2.警告事件,如果输入验证码时,失去焦点提示输入验证码,错误时提示验证码错误
+                                    -->
                                 <p>
                                     <i class="fa fa-lock mobile" aria-hidden="true"></i>&nbsp;&nbsp;验证码:&nbsp;&nbsp;
                                     <md-input-container class="inputWidthAuth">
@@ -90,7 +94,7 @@
                                     <button (click)="sendAuthCode()" md-raised-button color="primary" [class.active]="state=='login'">{{codeTime==0?'发送验证码':codeTime}}</button>
                                 </p>
                                 <button md-raised-button color="primary" *ngIf="step!=0" (click)="step=step-1" class="marginBtn">上一步</button>
-                                <button md-raised-button color="primary" (click)="step=step+1">下一步</button>
+                                <button md-raised-button color="primary" (click)="step=step+1;">下一步</button>
                             </div>
                         </div>
                     </md-tab>
@@ -111,7 +115,7 @@
                                     </md-input-container>
                                 </p>
                                 <button md-raised-button color="primary" *ngIf="step!=0" (click)="step=step-1" class="marginBtn">上一步</button>
-                                <button md-raised-button color="primary" (click)="step=step+1">提交</button>
+                                <button md-raised-button color="primary" (click)="step=step+1;forgotPassword()">提交</button>
                             </div>
                         </div>
                     </md-tab>
@@ -128,7 +132,6 @@
 
                     </md-tab>
                 </md-tab-group>
-
             </div>
             <!--注册页面  -->
             <div class="register" *ngIf="state=='register'">

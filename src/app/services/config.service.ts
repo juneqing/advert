@@ -12,7 +12,7 @@ export class ConfigService {
   localIp = 'http://47.92.87.28';
 
   get advert(): Types.Advert {
-    var admin = localStorage.getItem('advert');
+    var admin = localStorage.getItem('advert') ;
     return admin ? JSON.parse(admin) : false;
   }
   set advert(advert: Types.Advert) {

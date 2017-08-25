@@ -80,16 +80,22 @@ export class AdvertPublishTaskPageComponent implements OnInit {
     // let compressData = await this.config.compressBase64(base64);
     this.newTask.bannerImg = await this.config.PostLocal(`/api.uploadBase64.go`, { base64 });
   }
+
+
   //任务修改
   async saveNewItem() {
+    this.newTask.taskTag =<any>this.selectedTaskTag._id;//获取用户选中的广告分类
+   //创建广告
     if (this.isNew) {
-      this.newTask.taskTag =<any>this.selectedTaskTag._id;
       this.newTask.publisher = this.config.advert._id;
       let result = await this.config.Post('/advert.publishTask.go', this.newTask);
-    } else {
+    } //更新更改广告
+    else {
       await this.config.Put('/admin.rest.go?model=taskModel&_id=' + this.newTask._id, this.newTask);
     }
     this.config.router.navigateByUrl('/advert');
-
   }
+
+
+  
 }

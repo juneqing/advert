@@ -9,6 +9,7 @@ import { Types } from '../../types';
 })
 
 export class LoginPageComponent implements OnInit {
+  remeberMe:boolean=false;
   inputRandomCode:string='';
   advert: Types.Advert;
   warnPhone:boolean=false;
@@ -31,21 +32,58 @@ export class LoginPageComponent implements OnInit {
   constructor(public config: ConfigService) {
     // this.checkAdminLogin();
     this.checkAdvertLogin();
+    /**
+     * 记住我事件,本地存储用户账户密码
+     */
+    let oldUserStr =localStorage.getItem('old-user')
+    if(oldUserStr){
+      this.user= JSON.parse(oldUserStr);
+      this.remeberMe=true;
+    }
+
   }
+  /**
+   * 清除记住我事件
+   */
+  clearSession(){
+    if(!this.remeberMe){
+      localStorage.setItem('old-user','');
+    }
+  }
+
+
+  /**
+   * enter键可直接登录
+   * console.log(event.keyCode);//获取键盘码
+   */
 @HostListener('keyup',['$event']) enter(event:KeyboardEvent){
-  if(event.keyCode==13){
+ if(event.keyCode==13){
     this.login()
-  }
+  }  
 }
 
+ /**
+  * 登录
+  */
   async login() {
       let result = await this.config.Post('/advert.login.go', this.user);
       if (result) {
-        this.config.advert = result;
-        this.config.router.navigateByUrl('/advert')
+        // 本地存储登录
+        if(this.remeberMe){localStorage.setItem('old-user',JSON.stringify(this.user));}else{}
+      this.config.advert = result;
+      this.config.router.navigateByUrl('/advert')
       } 
     
   }
+  /**
+ * 重定向,如果有该用户,直接定向到advert页面,防止用户直接网址内输入/advert而不是自动的/login
+ */
+  checkAdvertLogin() {
+    if (this.config.advert) {
+      this.config.router.navigateByUrl('/advert')
+    }
+  }
+
 
   // checkAdminLogin() {
   //   if (this.config.admin) {
@@ -53,14 +91,10 @@ export class LoginPageComponent implements OnInit {
   //   }
   // }
 
-  checkAdvertLogin() {
-    if (this.config.advert) {
-      this.config.router.navigateByUrl('/advert')
-    }
-  }
-  /**
-   * 循环60秒
-   */
+ 
+/**
+ * 短信验证码循环60秒
+ */
   loopOneMini() {
     this.codeTime = 60;
     let timmer = setInterval(() => {
@@ -68,7 +102,9 @@ export class LoginPageComponent implements OnInit {
     }, 1000);
   }
 
-  // 注册发送验证码
+  /**
+   * 注册发送短信验证码
+   */
   async sendAuthCode() {
     if (this.codeTime > 0) {
     } else {
@@ -80,10 +116,16 @@ export class LoginPageComponent implements OnInit {
       }
     }
   }
+
+
   ngOnInit() {
 
   }
-  // 判断登陆密码
+  /**
+   * 注册页面
+   * 1.判断两次输入密码是否一致
+   * 2.发送注册信息请求,存入至用户数据库,直接跳转到用户页面
+   */
   async register() {
     if (this.user.password != this.user.rePassword) {
       alert('两次输入的密码不一致');
@@ -94,19 +136,36 @@ export class LoginPageComponent implements OnInit {
         this.config.router.navigateByUrl('/advert');
       }
     }
-
   }
-
+/**
+ *警告
+ */
   checkPhone(){
     this.warnPhone=!this.user.phone;
   }
+
+  randomCode;
+  /**
+   *忘记密码版块时页面刷新数字验证码
+   */
   checkImgAuthCode(code:string){
-    console.log(code,this.randomCode);
+    //console.log(code,this.randomCode);
     this.warnImgAuthCode= !(code==this.randomCode);
   }
-  randomCode;
-
+  /**
+   * 刷新验证码
+   */
   randomACode(){
     this.randomCode= Math.random().toString().substring(2,6)
   }
+/**
+ *忘记密码,进行密码修改
+ */
+async forgotPassword(){
+  if(this.user.password != this.user.rePassword){
+    alert('两次输入的密码不一致');
+  }else{
+    await this.config.Post('/advert.forgotPassword.go',{phone:this.user.phone,code:this.authCode,newPassword:this.user.password});
+  }
+}
 }

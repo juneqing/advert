@@ -9,6 +9,7 @@ import { Types } from '../../../types/types'
 export class AdvertHomePageComponent implements OnInit {
   advert: Types.Advert;
   step: number = 0;
+  task: Types.ITask[] = [];
   tasks: Types.ITask[] = [];
   showMessage = true;
   selectedTask: Types.ITask;
@@ -126,5 +127,15 @@ export class AdvertHomePageComponent implements OnInit {
 
   editTask(task: Types.ITask) {
     this.config.router.navigateByUrl('/advert/publish-task?taskId=' + task._id);
+  }
+  
+  // 点击复制任务推广链接地址
+   copyTaskLink(task:Types.ITask){  
+   let Url=`http://wq8.youqulexiang.com/share/taskDetail?taskId=`+task._id
+   let textareaEle = document.getElementsByTagName('textarea').item(0);
+   textareaEle.value=Url;
+   textareaEle.select();
+   document.execCommand("Copy"); // 执行浏览器复制命令
+  alert("链接已复制至剪切板,可粘贴");
   }
 }

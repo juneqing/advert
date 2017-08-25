@@ -29,6 +29,10 @@ ul li {
     background: rebeccapurple;
 } */
 
+a {
+    cursor: pointer;
+}
+
 .mat-sidenav-content {
     overflow-x: hidden!important;
 }

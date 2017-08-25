@@ -153,3 +153,10 @@ tbody tr td {
 .table-hover:hover {
     background: rgba(195, 193, 193, 0.87);
 }
+
+.test {
+    position: fixed;
+    right: -20px;
+    height: 0;
+    width: 0;
+}

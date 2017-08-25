@@ -18,7 +18,7 @@ export class AdvertHeaderComponent implements OnInit {
 
   //帐号退出
   signOut() {
-    localStorage.clear();
+    localStorage.setItem('advert','');
     this.config.router.navigateByUrl('/login');
   }
   ngOnInit() {

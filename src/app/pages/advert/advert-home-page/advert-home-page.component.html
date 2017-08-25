@@ -56,9 +56,12 @@
                                     <td>{{task.taskTag.name}}</td>
                                     <td class="text-left">
                                         <i class="fa fa-eye " (click)="selectedTaskTag=task;showTaskOneDayData(task)" style="cursor: pointer;color:blueviolet;"></i>&nbsp;&nbsp;
-                                        <md-slide-toggle color="primary" [checked]="task.active" [disabled]="task.totalMoney/task.fee*100 <=20" (change)="toggleTaskActive(task)" [style.color]="task.active?'green':'red'">{{task.active?'启用':'禁用'}}</md-slide-toggle>&nbsp;&nbsp;
+                                        <md-slide-toggle color="primary" [checked]="task.active" [disabled]="task.totalMoney/task.fee*100 <=20" (change)="toggleTaskActive(task)" [style.color]="task.active?'green':'red'">
+                                            {{task.active?'启用':'禁用'}}
+                                        </md-slide-toggle>&nbsp;&nbsp;
                                         <i (click)="editTask(task)" class="fa fa-pencil-square-o" aria-hidden="true" style="color:blueviolet;cursor: pointer;"></i>&nbsp;&nbsp;
-                                        <!-- <i class="fa fa-files-o" aria-hidden="true" style="color:blueviolet;cursor: pointer;"></i> -->
+                                        <i class="fa fa-files-o" aria-hidden="true" style="color:blueviolet;cursor: pointer;" (click)="copyTaskLink(task)" mdTooltip="点击复制推广任务链接地址"></i>
+                                        <textarea name="" id="test" cols="20" rows="5" class="test"></textarea>
                                     </td>
                                 </tr>
                             </tbody>
@@ -67,6 +70,7 @@
                 </div>
             </div>
         </section>
+
         <section class="mod togglable-tabs">
             <div class="box-header with-border">
                 <h3 class="box-title title">点击次数</h3>
