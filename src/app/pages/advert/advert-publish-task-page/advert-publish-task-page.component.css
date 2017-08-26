@@ -169,15 +169,6 @@ button {
 
 /* 效果图同步预览 */
 
-
-/* .center-box-cr {
-    width: 356px;
-    height: 82px; 
-    margin: 0 auto;
-    overflow: hidden;
-    border: 1px solid gray;
-} */
-
 .center-box-cr>img {
     max-height: 150px;
     width: 30%;

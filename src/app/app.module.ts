@@ -22,6 +22,7 @@ import { MoneyPipe } from './pipes/money.pipe';
 import {PropPipe} from './pipes/prop.pipe';
 import { AdvertFinancialPageComponent } from './pages/advert/advert-financial-page/advert-financial-page.component';
 import { AdvertAboutPageComponent } from './pages/advert/advert-about-page/advert-about-page.component';
+import { AdvertTaskPersonclickPageComponent } from './pages/advert/advert-task-personclick-page/advert-task-personclick-page.component';
 // import {Dat} from '@angular/common';
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdvertAboutPageComponent } from './pages/advert/advert-about-page/adver
     MoneyPipe,
     PropPipe,
     AdvertFinancialPageComponent,
-    AdvertAboutPageComponent
+    AdvertAboutPageComponent,
+    AdvertTaskPersonclickPageComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ import { AdvertAboutPageComponent } from './pages/advert/advert-about-page/adver
         path: 'advert', component: AdvertPageComponent, data: { label: '广告商' },
         children: [
           { path: '', component: AdvertHomePageComponent, data: { label: '首页' }, children: [] },
+          { path: 'advert-task-personclick', component: AdvertTaskPersonclickPageComponent, data: { label: '任务点击人数统计' }, children: [] },
           { path: 'publish-task', component: AdvertPublishTaskPageComponent, data: { label: '发布广告' }, children: [] },
           { path: 'advert-account', component: AdvertAccountPageComponent, data: { label: '我的账户' }, children: [] },
           { path: 'advert-financial', component: AdvertFinancialPageComponent, data: {label:'财务信息'}, children: [] },
