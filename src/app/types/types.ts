@@ -2,6 +2,9 @@ export namespace Types {
     export interface Advert {
         _id?: string;
         phone: string;
+        oldPassword?:string;
+        newPassword?:string;
+        reNewPassword?:string;
         password: string;
         rePassword:string;
         nickname?: string;

@@ -19,6 +19,11 @@ export class AdvertAccountPageComponent implements OnInit {
   warnHeadname:boolean=false;
   warnHeadphone:boolean=false;
   warnHeadEmail:boolean=false;
+  user = {
+    phone: '',
+    password: '',
+    rePassword: ''
+  };
   step = 0;
   statu = " ";
   status="IDcard";
@@ -45,7 +50,6 @@ export class AdvertAccountPageComponent implements OnInit {
     }, 1000);
   }
   async sendAuthCode() {
-
     if (this.codeTime > 0) {
     } else {
       if (/1[0-9]\d{9}/g.test(this.advert.phone)) {
@@ -56,6 +60,16 @@ export class AdvertAccountPageComponent implements OnInit {
       }
     }
   }
+  /**
+ *忘记密码,进行密码修改
+ */
+async changePassword(){
+  if(this.advert.newPassword!= this.advert.reNewPassword){
+    alert('两次输入的密码不一致');
+  }else{
+    await this.config.Post('/advert.changePassword.go',{phone:this.advert.phone,oldPassword:this.advert.oldPassword,newPassword:this.advert.newPassword});
+  }
+}
   async changePhone() { }
   async changePass() { }
   async setEamil() { }

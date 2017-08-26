@@ -263,6 +263,7 @@
             <md-tab label="安全设置">
                 <div class="tab-pane">
                     <div class="form-horizontal">
+                        <!-- 您的基础信息 -->
                         <div class="form-group">
                             <h4 class="title">您的基础信息</h4>
                             <md-grid-list cols="3" rowHeight="40px">
@@ -303,6 +304,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- 修改号码 -->
                 <md-grid-list cols="1" rowHeight="60px" *ngIf="statu=='changePhone'" class="topLine">
                     <md-grid-tile>
                         <h3 class="titles">修改号码</h3>
@@ -334,9 +336,10 @@
                     </md-grid-tile>
                     <md-grid-tile class="btn">
                         <button md-raised-button class="cancel" (click)="statu=' '">取消</button>
-                        <button (click)="changePhone()" md-raised-button color="primary">确认</button>
+                        <button (click)="changePhone();statu=' '" md-raised-button color="primary">确认</button>
                     </md-grid-tile>
                 </md-grid-list>
+                <!-- 修改邮箱 -->
                 <md-grid-list cols="1" rowHeight="60px" *ngIf="statu=='setEamil'" class="topLine">
                     <md-grid-tile>
                         <h3 class="titles">修改邮箱</h3>
@@ -359,9 +362,10 @@
                     </md-grid-tile>
                     <md-grid-tile class="btn">
                         <button md-raised-button class="cancel" (click)="statu=' '">取消</button>
-                        <button (click)="setEamil()" md-raised-button color="primary">确认</button>
+                        <button (click)="setEamil();statu=' '" md-raised-button color="primary">确认</button>
                     </md-grid-tile>
                 </md-grid-list>
+                <!-- 修改密码 -->
                 <md-grid-list cols="1" rowHeight="60px" *ngIf="statu=='changePass'" class="topLine">
                     <md-grid-tile>
                         <h3 class="titles">修改密码</h3>
@@ -370,7 +374,7 @@
                         <div class="sig-item">
                             <label class="label-con">原始密码</label>
                             <md-input-container class="example-full-width">
-                                <input mdInput placeholder="请输入登录密码" [(ngModel)]="advert.password" type="password">
+                                <input mdInput placeholder="请输入登录密码" [(ngModel)]="advert.oldPassword" type="password">
                             </md-input-container>
                         </div>
                     </md-grid-tile>
@@ -378,7 +382,7 @@
                         <div class="sig-item">
                             <label class="label-con">新密码</label>
                             <md-input-container class="example-full-width">
-                                <input mdInput placeholder="请设置新密码" [(ngModel)]="advert.phone" type="password">
+                                <input mdInput placeholder="请设置新密码" [(ngModel)]="advert.newPassword" type="password">
                             </md-input-container>
                         </div>
                     </md-grid-tile>
@@ -386,13 +390,13 @@
                         <div class="sig-item">
                             <label class="label-con">确认新密码</label>
                             <md-input-container class="example-full-width">
-                                <input mdInput placeholder="请输入确认密码" [(ngModel)]="advert.rePassword" type="password">
+                                <input mdInput placeholder="请输入确认密码" [(ngModel)]="advert.reNewPassword" type="password">
                             </md-input-container>
                         </div>
                     </md-grid-tile>
                     <md-grid-tile class="btn">
                         <button md-raised-button class="cancel" (click)="statu=' '">取消</button>
-                        <button (click)="changePass()" md-raised-button color="primary">确认</button>
+                        <button (click)="changePassword();statu=' '" md-raised-button color="primary">确认</button>
                     </md-grid-tile>
                 </md-grid-list>
             </md-tab>
