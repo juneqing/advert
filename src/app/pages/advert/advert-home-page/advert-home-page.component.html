@@ -27,8 +27,8 @@
                     <div role="tabpanel" class="tab-pane">
                         <ul class="topbar-legends">
                             <li><i class="legend l-red"></i>未审核：0个广告</li>
-                            <li><i class="legend l-green"></i>投放中：0个广告</li>
-                            <li><i class="legend l-gray"></i>已结束：0个广告</li>
+                            <li><i class="legend l-green"></i>投放中：{{ (tasks | prop:{active:true}).length }}个广告</li>
+                            <li><i class="legend l-gray"></i>已结束：{{ (tasks | prop:{active:false}).length }}个广告</li>
                         </ul>
                         <table class="table">
                             <thead>
@@ -45,7 +45,20 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let task of tasks;let i = index" class="table-hover">
-                                    <td>{{task.title}}</td>
+                                    <!-- 条件switch,case,满足什么条件出现什么状态 -->
+                                    <td>
+                                        <span [ngSwitch]="task.active">
+                                        <p *ngSwitchCase="true">
+                                                <i class="legend l-green"></i>{{task.title}}  
+                                        </p>
+                                        <p *ngSwitchCase="false">
+                                                <i class="legend l-gray"></i>{{task.title}}        
+                                        </p>
+                                        <!-- 没有满足的条件情况下,选择这种状态 -->
+                                        <p *ngSwitchDefault>      
+                                        </p>
+                                        </span>
+                                    </td>
                                     <td>社交分享广告</td>
                                     <td>{{task.createDt | date:'yyyy-MM-dd HH:mm:ss' }}<br>{{task.startDt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
                                     <td>{{task.shareMoney | money}}</td>

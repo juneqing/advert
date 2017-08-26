@@ -19,7 +19,9 @@ import { AdvertPublishTaskPageComponent } from './pages/advert/advert-publish-ta
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { AdvertAccountPageComponent, DialogOverviewExampleDialog } from './pages/advert/advert-account-page/advert-account-page.component';
 import { MoneyPipe } from './pipes/money.pipe';
+import {PropPipe} from './pipes/prop.pipe';
 import { AdvertFinancialPageComponent } from './pages/advert/advert-financial-page/advert-financial-page.component';
+import { AdvertAboutPageComponent } from './pages/advert/advert-about-page/advert-about-page.component';
 // import {Dat} from '@angular/common';
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AdvertFinancialPageComponent } from './pages/advert/advert-financial-pa
     AdvertAccountPageComponent,
     DialogOverviewExampleDialog,
     MoneyPipe,
-    AdvertFinancialPageComponent
+    PropPipe,
+    AdvertFinancialPageComponent,
+    AdvertAboutPageComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { AdvertFinancialPageComponent } from './pages/advert/advert-financial-pa
           { path: '', component: AdvertHomePageComponent, data: { label: '首页' }, children: [] },
           { path: 'publish-task', component: AdvertPublishTaskPageComponent, data: { label: '发布广告' }, children: [] },
           { path: 'advert-account', component: AdvertAccountPageComponent, data: { label: '我的账户' }, children: [] },
-          { path: 'advert-financial', component: AdvertFinancialPageComponent, data: {label:'财务信息'}, children: [] }
+          { path: 'advert-financial', component: AdvertFinancialPageComponent, data: {label:'财务信息'}, children: [] },
+          { path: 'advert-about', component: AdvertAboutPageComponent, data: {label:'关于我们'}, children: [] },
         ]
       }
     ]),
@@ -60,7 +65,7 @@ import { AdvertFinancialPageComponent } from './pages/advert/advert-financial-pa
     MdDatepickerModule
 
   ],
-  providers: [ConfigService, MoneyPipe],
+  providers: [ConfigService, MoneyPipe,PropPipe],
   bootstrap: [AppComponent, DialogOverviewExampleDialog]
 })
 export class AppModule { }

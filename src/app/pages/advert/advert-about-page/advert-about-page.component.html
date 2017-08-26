@@ -1,0 +1,93 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content togglable-tabs">
+        <div>
+            <h2 class="page-header">
+                <i class="fa fa-globe"></i>狠享赚 三级分销系统
+                <small class="pull-right"></small>
+            </h2>
+        </div>
+        <md-grid-list cols="2" rowHeight="80px">
+            <md-grid-tile colspan="1" rowspan="7">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr class="borTop">
+                            <td>站点名字</td>
+                            <td>狠享赚 三级分销 测试</td>
+                        </tr>
+                        <tr>
+                            <td>域名</td>
+                            <td><a>http://v3.yelanshan.net</a></td>
+                        </tr>
+                        <tr>
+                            <td>程序版本</td>
+                            <td>v0.2 </td>
+                        </tr>
+                        <tr>
+                            <td>关于开发者</td>
+                            <td> <a href="http://yangjie.leanote.com" target="blank">博客</a> <a href="http://youqulexiang.net">软件官网</a> 微信公众号 :狠享赚 </td>
+                        </tr>
+                        <tr>
+                            <td>Nodejs版本</td>
+                            <td> 8.2 </td>
+                        </tr>
+                        <tr>
+                            <td>数据驱动</td>
+                            <td>Mongoodb</td>
+                        </tr>
+                        <tr>
+                            <td>文件上传目录</td>
+                            <td>/public/upload</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-grid-tile>
+            <md-grid-tile rowspan="7" colspan="1">
+                <div class="form-group">
+                    <label for="">版本更新</label>
+                    <textarea class="form-control" rows="16" required="required" disabled>
+            
+                        beta版本
+                        * 用户付费发布任务
+                        * 微信商户支付给个人，用户提现
+                        * 三级分销,返利系统  
+                    </textarea>
+                </div>
+            </md-grid-tile>
+        </md-grid-list>
+        <div>
+            <h2 class="page-header">
+                <i class="fa fa-globe"></i>部署环境信息
+                <small class="pull-right">{{now | date:'yyyy-MM-dd '}}</small>
+            </h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr class="bgColor">
+                        <td>系统环境</td>
+                        <td>测试环境 Windows/Nginx 线上环境 Linux/Nginx</td>
+                    </tr>
+                    <tr>
+                        <td>服务器地址</td>
+                        <td>47.92.87.28</td>
+                    </tr>
+                    <tr class="bgColor">
+                        <td>服务器时间</td>
+                        <td>{{now| date:'yyyy-MM-dd'}}</td>
+                    </tr>
+                    <tr>
+                        <td>上传大小限制</td>
+                        <td>50Mb</td>
+                    </tr>
+                    <tr class="bgColor">
+                        <td>URL路径：</td>
+                        <td>/</td>
+                    </tr>
+                    <tr>
+                        <td>物理路径：</td>
+                        <td>端口 8080</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>

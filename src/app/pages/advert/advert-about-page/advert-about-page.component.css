@@ -1,0 +1,35 @@
+.content {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px 0 #d3d5d6;
+    background: #fff;
+    border: 1px solid gray;
+    min-height: 510px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table tr {
+    height: 65px;
+    border-top: 1px solid gray !important;
+}
+
+.form-group {
+    width: 90%;
+}
+
+.form-control {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 3px;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.bgColor {
+    background: #F5F5F5;
+}
